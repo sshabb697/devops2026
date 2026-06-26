@@ -1,0 +1,26 @@
+# Reusable steps template.
+# Reference from a pipeline:
+#
+#   steps:
+#     - template: YAML/templates/build-steps.yml
+#       parameters:
+#         buildConfiguration: 'Release'
+
+parameters:
+  - name: buildConfiguration
+    type: string
+    default: 'Release'
+  - name: runTests
+    type: boolean
+    default: true
+
+steps:
+  - script: echo "Restoring dependencies..."
+    displayName: 'Restore'
+
+  - script: echo "Building in ${{ parameters.buildConfiguration }}..."
+    displayName: 'Build'
+
+  - ${{ if eq(parameters.runTests, true) }}:
+      - script: echo "Running tests..."
+        displayName: 'Test'

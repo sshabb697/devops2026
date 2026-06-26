@@ -1,0 +1,19 @@
+{
+  "name": "contoso-tasks",
+  "version": "1.0.0",
+  "description": "Minimal Tasks API used by the Azure DevOps 6-Day Course",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "azure-devops",
+    "sample",
+    "express"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

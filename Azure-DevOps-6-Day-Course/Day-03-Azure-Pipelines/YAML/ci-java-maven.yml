@@ -1,0 +1,36 @@
+# CI build pipeline for a Java application built with Maven
+# Copy to the repo root as azure-pipelines.yml
+
+trigger:
+  - main
+
+pr:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: Maven@4
+    displayName: 'Maven package'
+    inputs:
+      mavenPomFile: 'pom.xml'
+      goals: 'package'
+      options: '-B'
+      publishJUnitResults: true
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '17'
+      mavenVersionOption: 'Default'
+
+  - task: CopyFiles@2
+    displayName: 'Copy JAR to staging'
+    inputs:
+      contents: '**/target/*.jar'
+      targetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: PublishPipelineArtifact@1
+    displayName: 'Publish artifact'
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)'
+      artifact: 'drop'

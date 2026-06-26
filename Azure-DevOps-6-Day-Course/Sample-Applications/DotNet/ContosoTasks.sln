@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2E1AA9BF-F02E-4DE4-944D-E091B09913B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContosoTasks", "src\ContosoTasks\ContosoTasks.csproj", "{F281C8E3-DB63-4D12-9A6B-ED8933DE86D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0F2A2706-E643-494C-9323-E478A21DD4B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContosoTasks.Tests", "tests\ContosoTasks.Tests\ContosoTasks.Tests.csproj", "{DD24BC1B-DA05-4C85-9227-136EAB49F84A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F281C8E3-DB63-4D12-9A6B-ED8933DE86D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F281C8E3-DB63-4D12-9A6B-ED8933DE86D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F281C8E3-DB63-4D12-9A6B-ED8933DE86D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F281C8E3-DB63-4D12-9A6B-ED8933DE86D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD24BC1B-DA05-4C85-9227-136EAB49F84A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD24BC1B-DA05-4C85-9227-136EAB49F84A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD24BC1B-DA05-4C85-9227-136EAB49F84A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD24BC1B-DA05-4C85-9227-136EAB49F84A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F281C8E3-DB63-4D12-9A6B-ED8933DE86D2} = {2E1AA9BF-F02E-4DE4-944D-E091B09913B2}
+		{DD24BC1B-DA05-4C85-9227-136EAB49F84A} = {0F2A2706-E643-494C-9323-E478A21DD4B9}
+	EndGlobalSection
+EndGlobal
