@@ -1,8 +1,20 @@
-# 02 - DevOps Lifecycle
+# 03 - DevOps Lifecycle
 
 ## Overview
 
-The **DevOps lifecycle** is a continuous loop of phases that software passes through repeatedly. Unlike traditional linear models, it never really "ends" — feedback from operating software in production feeds the next round of planning.
+In the previous lesson you saw how **traditional deployment** worked: siloed teams, manual steps, big releases, and slow feedback. The **DevOps lifecycle** is the alternative — a continuous loop of phases that software passes through repeatedly.
+
+Unlike the old linear handoffs, this loop never really "ends." Feedback from production feeds the next round of planning.
+
+```
+  TRADITIONAL (linear)              DEVOPS (continuous loop)
+  ────────────────────              ────────────────────────
+
+  Plan → Dev → QA → Ops → done      Plan → Code → Build → Test
+  (months, one-way)                      → Release → Deploy → Operate
+                                         → Monitor ──────► Plan
+                                                    ∞
+```
 
 It is often drawn as an **infinity loop (∞)** to emphasize this continuity.
 
@@ -78,4 +90,4 @@ Waterfall delivery is linear — once you finish, you're done. DevOps treats sof
 2. Which Azure DevOps service maps to the **Plan** phase?
 3. Why is the lifecycle drawn as an infinity loop?
 
-➡️ Next: [03 - CI vs CD](./03-CI-vs-CD.md)
+➡️ Next: [04 - CI vs CD](./04-CI-vs-CD.md)

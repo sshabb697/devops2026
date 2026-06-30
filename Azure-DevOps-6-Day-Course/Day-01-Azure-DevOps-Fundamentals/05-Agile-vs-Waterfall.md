@@ -1,4 +1,4 @@
-# 04 - Agile vs Waterfall
+# 05 - Agile vs Waterfall
 
 ## Overview
 
@@ -81,4 +81,4 @@ Azure DevOps supports Agile directly through **Azure Boards** (backlogs, sprints
 2. State two of the four Agile Manifesto values.
 3. Why does Agile pair well with DevOps?
 
-➡️ Next: [05 - Scrum](./05-Scrum.md)
+➡️ Next: [06 - Scrum](./06-Scrum.md)

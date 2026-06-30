@@ -1,4 +1,4 @@
-# 07 - Azure DevOps Architecture
+# 08 - Azure DevOps Architecture
 
 ## Overview
 
@@ -80,4 +80,4 @@ Common guidance:
 2. What is the difference between a project and a team?
 3. What provides the security/isolation boundary in Azure DevOps?
 
-➡️ Next: [08 - Azure DevOps Services](./08-Azure-DevOps-Services.md)
+➡️ Next: [09 - Azure DevOps Services](./09-Azure-DevOps-Services.md)

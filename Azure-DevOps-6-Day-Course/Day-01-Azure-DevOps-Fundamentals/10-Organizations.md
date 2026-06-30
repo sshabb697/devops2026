@@ -1,4 +1,4 @@
-# 09 - Organizations
+# 10 - Organizations
 
 ## Overview
 
@@ -77,4 +77,4 @@ az devops project list --organization https://dev.azure.com/<org>
 2. Name three things managed at the organization level.
 3. Why connect an organization to Microsoft Entra ID?
 
-➡️ Next: [10 - Projects](./10-Projects.md)
+➡️ Next: [11 - Projects](./11-Projects.md)

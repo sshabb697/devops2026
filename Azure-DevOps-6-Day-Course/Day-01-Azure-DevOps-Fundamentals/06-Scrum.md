@@ -1,4 +1,4 @@
-# 05 - Scrum
+# 06 - Scrum
 
 ## Overview
 
@@ -73,4 +73,4 @@ Azure DevOps offers a built-in **Scrum process template** with work item types (
 2. What is the purpose of the Sprint Retrospective?
 3. What is the difference between the Product Backlog and the Sprint Backlog?
 
-➡️ Next: [06 - Azure DevOps Overview](./06-Azure-DevOps-Overview.md)
+➡️ Next: [07 - Azure DevOps Overview](./07-Azure-DevOps-Overview.md)

@@ -1,4 +1,4 @@
-# 03 - CI vs CD
+# 04 - CI vs CD
 
 ## Overview
 
@@ -86,4 +86,4 @@ Continuous Deployment: Commit → Build → Test → ... →  (automatic)      �
 2. What is the single key difference between Continuous Delivery and Continuous Deployment?
 3. Which requires the strongest automated testing?
 
-➡️ Next: [04 - Agile vs Waterfall](./04-Agile-vs-Waterfall.md)
+➡️ Next: [05 - Agile vs Waterfall](./05-Agile-vs-Waterfall.md)

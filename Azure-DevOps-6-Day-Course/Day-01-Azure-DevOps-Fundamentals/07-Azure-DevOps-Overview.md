@@ -1,4 +1,4 @@
-# 06 - Azure DevOps Overview
+# 07 - Azure DevOps Overview
 
 ## Overview
 
@@ -79,4 +79,4 @@ They also integrate well together (e.g., Azure Boards + GitHub repos).
 2. What is the difference between Azure DevOps Services and Azure DevOps Server?
 3. Can you use Azure Pipelines without using Azure Repos?
 
-➡️ Next: [07 - Azure DevOps Architecture](./07-Azure-DevOps-Architecture.md)
+➡️ Next: [08 - Azure DevOps Architecture](./08-Azure-DevOps-Architecture.md)

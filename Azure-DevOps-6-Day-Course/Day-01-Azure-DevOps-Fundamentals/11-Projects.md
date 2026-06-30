@@ -1,4 +1,4 @@
-# 10 - Projects
+# 11 - Projects
 
 ## Overview
 
@@ -87,4 +87,4 @@ az devops project delete --id <project-id>
 2. When should you use separate projects instead of teams?
 3. What is the difference between a private and public project?
 
-➡️ Next: [11 - Process Templates](./11-Process-Templates.md)
+➡️ Next: [12 - Process Templates](./12-Process-Templates.md)

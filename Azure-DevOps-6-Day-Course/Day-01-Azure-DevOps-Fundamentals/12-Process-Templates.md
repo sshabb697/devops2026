@@ -1,4 +1,4 @@
-# 11 - Process Templates
+# 12 - Process Templates
 
 ## Overview
 
@@ -67,4 +67,4 @@ Inherited processes let you tailor Boards (custom fields, states, rules) while k
 2. Which process uses **Product Backlog Items** and **Impediments**?
 3. How do you customize a built-in process?
 
-➡️ Next: [12 - Users, Groups & Permissions](./12-Users-Groups-Permissions.md)
+➡️ Next: [13 - Users, Groups & Permissions](./13-Users-Groups-Permissions.md)

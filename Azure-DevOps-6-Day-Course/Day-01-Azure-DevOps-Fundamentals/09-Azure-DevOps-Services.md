@@ -1,4 +1,4 @@
-# 08 - Azure DevOps Services
+# 09 - Azure DevOps Services
 
 ## Overview
 
@@ -98,4 +98,4 @@ You are not required to adopt everything at once. Common combinations:
 2. Which access level is required for Azure Test Plans?
 3. Give one example of mixing Azure DevOps with another platform.
 
-➡️ Next: [09 - Organizations](./09-Organizations.md)
+➡️ Next: [10 - Organizations](./10-Organizations.md)

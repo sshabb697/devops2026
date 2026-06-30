@@ -8,14 +8,11 @@
 
 ## The Problem DevOps Solves
 
-In traditional organizations:
+In traditional organizations, **Development** and **Operations** often had opposing goals — ship fast vs. stay stable — and worked in separate silos. That led to the **"wall of confusion"**: manual handoffs, big-bang releases, and blame when production broke.
 
-- **Developers** want to ship new features quickly.
-- **Operations** want to keep systems stable and avoid change.
+DevOps tears down that wall by making teams share responsibility for the entire lifecycle — from idea to production and beyond.
 
-This creates a "wall of confusion": developers throw code over the wall, operations struggle to run it, and when something breaks each side blames the other. The result is slow releases, frequent outages, and frustrated teams.
-
-DevOps tears down that wall by making both teams share responsibility for the entire lifecycle — from idea to production and beyond.
+> For diagrams of traditional deployment, common pain points, and a side-by-side comparison with DevOps, see **[02 - Traditional Application Deployment](./02-Traditional-Application-Deployment.md)** before the DevOps lifecycle lesson.
 
 ## The Three Ways (from *The Phoenix Project* / *The DevOps Handbook*)
 
@@ -72,4 +69,4 @@ The DORA (DevOps Research & Assessment) metrics measure team performance:
 3. Name the five CALMS pillars.
 4. What are the four DORA metrics?
 
-➡️ Next: [02 - DevOps Lifecycle](./02-DevOps-Lifecycle.md)
+➡️ Next: [02 - Traditional Application Deployment](./02-Traditional-Application-Deployment.md)

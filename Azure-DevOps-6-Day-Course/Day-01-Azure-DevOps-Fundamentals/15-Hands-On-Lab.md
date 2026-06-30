@@ -1,4 +1,4 @@
-# 14 - Hands-On Lab: Set Up Your Azure DevOps Environment
+# 15 - Hands-On Lab: Set Up Your Azure DevOps Environment
 
 ## Goal
 

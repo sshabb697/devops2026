@@ -1,4 +1,4 @@
-# 13 - Access Levels
+# 14 - Access Levels
 
 ## Overview
 
@@ -79,4 +79,4 @@ Tip: Assign **Stakeholder** to anyone who only needs to view/manage work items �
 2. How many Basic licenses are free per organization?
 3. What does a user need to edit code: just Basic access, or access **and** permission?
 
-➡️ Next: [14 - Hands-On Lab](./14-Hands-On-Lab.md)
+➡️ Next: [15 - Hands-On Lab](./15-Hands-On-Lab.md)

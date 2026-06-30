@@ -1,4 +1,4 @@
-# 12 - Users, Groups & Permissions
+# 13 - Users, Groups & Permissions
 
 ## Overview
 
@@ -98,4 +98,4 @@ az devops user add \
 2. If a user is Allowed in one group and Denied in another, what happens?
 3. Why assign permissions to groups instead of individuals?
 
-➡️ Next: [13 - Access Levels](./13-Access-Levels.md)
+➡️ Next: [14 - Access Levels](./14-Access-Levels.md)
