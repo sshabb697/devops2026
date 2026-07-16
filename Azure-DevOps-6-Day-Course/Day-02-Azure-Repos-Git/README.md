@@ -39,4 +39,6 @@ By the end of today you will be able to:
 - Completed Day 1 (you have an organization and project).
 - A terminal/command line.
 
+> **.NET track:** After the Git lessons, students can follow the [.NET Deployment Workshop](../DotNet-Deployment-Workshop/) (lessons 01–04) to build locally and push to Azure Repos.
+
 > Keep the [Git Cheat Sheet](../Resources/Git-Cheat-Sheet.md) open as you work through today's lessons.

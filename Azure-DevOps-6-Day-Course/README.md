@@ -15,6 +15,7 @@ By the end of this course you will be able to:
 - Plan and track work with **Azure Boards** (Epics, Features, User Stories, Tasks, Bugs, Sprints, Kanban).
 - Configure secure, multi-stage deployments with environments, approvals, checks, and service connections.
 - Deliver a complete real-time project from organization creation to production deployment.
+- Build, publish, and deploy a **.NET** web application from local machine to **Azure App Service** (see [.NET Deployment Workshop](./DotNet-Deployment-Workshop/)).
 
 ---
 
@@ -44,6 +45,7 @@ By the end of this course you will be able to:
 | [Day 4](./Day-04-Azure-Boards/) | Azure Boards | Agile planning, work items, sprints, dashboards |
 | [Day 5](./Day-05-Deployments-and-Administration/) | Deployments & Administration | Environments, approvals, security, org administration |
 | [Day 6](./Day-06-Real-Time-Project/) | Real-Time Project | End-to-end CI/CD project from scratch |
+| [.NET Workshop](./DotNet-Deployment-Workshop/) | .NET Local → Azure | Install .NET, build locally, CI/CD, App Service deploy |
 
 See the full day-by-day breakdown in [Course-Schedule.md](./Course-Schedule.md).
 
@@ -73,6 +75,7 @@ Azure-DevOps-6-Day-Course/
 ├── Day-04-Azure-Boards/
 ├── Day-05-Deployments-and-Administration/
 ├── Day-06-Real-Time-Project/
+├── DotNet-Deployment-Workshop/   <- .NET: local build → CI/CD → App Service
 └── Sample-Applications/          <- demo apps for the labs
 ```
 

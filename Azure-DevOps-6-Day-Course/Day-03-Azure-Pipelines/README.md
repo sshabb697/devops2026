@@ -9,7 +9,7 @@ By the end of today you will be able to:
 - Explain CI/CD and how Azure Pipelines implements it.
 - Compare **Classic** and **YAML** pipelines and choose appropriately.
 - Read and write the **pipeline structure**: stages, jobs, steps.
-- Build a working **CI build pipeline**.
+- Build a working **CI build pipeline** for a **.NET** application (see [.NET Deployment Workshop](../DotNet-Deployment-Workshop/05-Create-CI-Pipeline.md)).
 - Understand release/CD concepts.
 - Use **variables**, **variable groups**, and **templates**.
 - Publish and consume **artifacts**.
@@ -38,5 +38,7 @@ By the end of today you will be able to:
 ## Sample Pipelines
 
 Ready-to-use YAML files live in the [`YAML/`](./YAML/) folder, paired with the demo apps in [Sample-Applications](../Sample-Applications/).
+
+For a full **.NET** path (local `dotnet publish` → CI artifact → **Azure App Service**), see the [.NET Deployment Workshop](../DotNet-Deployment-Workshop/).
 
 > Keep the [Azure DevOps Cheat Sheet](../Resources/Azure-DevOps-Cheat-Sheet.md) handy for YAML keywords and predefined variables.

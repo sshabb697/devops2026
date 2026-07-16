@@ -23,8 +23,9 @@ Every app exposes:
 ## How to Use
 
 1. Pick an app and read its `README.md` for run instructions.
-2. Push it to an Azure Repos repository.
-3. Use its `azure-pipelines.yml` (or the samples in [Day 3 YAML](../Day-03-Azure-Pipelines/YAML/)) to build it.
-4. Follow the [Day 6 Real-Time Project](../Day-06-Real-Time-Project/) to deploy it.
+2. For **.NET**, follow the [.NET Deployment Workshop](../DotNet-Deployment-Workshop/) — local build → artifact → Azure Repos → CI/CD → App Service.
+3. Push the app to an Azure Repos repository.
+4. Use its `azure-pipelines.yml` (or the samples in [Day 3 YAML](../Day-03-Azure-Pipelines/YAML/)) to build it.
+5. Follow the [Day 6 Real-Time Project](../Day-06-Real-Time-Project/) to deploy it.
 
 > These apps are intentionally minimal — the focus is the **DevOps workflow**, not the application code.

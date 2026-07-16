@@ -38,3 +38,5 @@ By the end of today you will be able to:
 
 - Completed Day 3 (you can author pipelines).
 - Helpful: an Azure subscription if you want to create a real Azure service connection (optional).
+
+> **.NET deploy lab:** [Workshop lesson 06](../DotNet-Deployment-Workshop/06-Deploy-to-Azure-App-Service.md) walks through App Service + service connection + `AzureWebApp@1` with a real .NET app.

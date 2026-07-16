@@ -43,12 +43,17 @@ DotNet/
 │   ├── ContosoTasks.Tests.csproj
 │   └── ApiTests.cs             # xUnit + WebApplicationFactory
 ├── .gitignore
-└── azure-pipelines.yml         # restore → build → test → publish artifact
+├── azure-pipelines.yml         # CI only: restore → build → test → publish artifact
+└── azure-pipelines-full.yml    # CI + CD: deploy to Azure App Service
 ```
 
 ## CI Pipeline
 
 `azure-pipelines.yml` restores, builds, tests, publishes the web app, and uploads an artifact. See [Day 3](../../Day-03-Azure-Pipelines/) and the [Day 6 project](../../Day-06-Real-Time-Project/).
+
+## Full CI/CD (Azure App Service)
+
+`azure-pipelines-full.yml` adds a **Deploy** stage that publishes to **Azure App Service** via `AzureWebApp@1`. Follow the step-by-step [.NET Deployment Workshop](../../DotNet-Deployment-Workshop/).
 
 ## Endpoints
 

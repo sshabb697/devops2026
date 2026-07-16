@@ -155,3 +155,20 @@ If you are studying part-time, here is one way to spread the six days across two
 - **Week 2:** Day 4 (Mon), Day 5 (Wed), Day 6 (Fri/weekend)
 
 Take notes, complete every lab, and revisit the [Interview Questions](./Resources/Interview-Questions.md) at the end.
+
+---
+
+## Optional — .NET Deployment Workshop (~3 hours)
+
+A dedicated hands-on track for **.NET** teams. Run after Day 1 (or spread across Days 2–3–5):
+
+| Lesson | Topic | Time |
+| ------ | ----- | ---- |
+| 01 | Install .NET SDK | 15m |
+| 02 | Create web app & run locally | 30m |
+| 03 | Build & publish artifact locally | 25m |
+| 04 | Push to Azure Repos | 25m |
+| 05 | Create CI pipeline | 40m |
+| 06 | Deploy to Azure App Service | 45m |
+
+Full guide: [DotNet-Deployment-Workshop](./DotNet-Deployment-Workshop/README.md).
