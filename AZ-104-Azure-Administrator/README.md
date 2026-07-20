@@ -21,6 +21,9 @@ Practical slides **and labs** for day-to-day Azure cloud work: create resources,
 
 Full lab index: [Labs/README.md](./Labs/README.md)
 
+**Day 1 infrastructure challenges** (VNet, VM, Storage, ARM, Peering, Load Balancer, …):  
+[Labs/Day1-Infrastructure-Challenges](./Labs/Day1-Infrastructure-Challenges/README.md)
+
 ---
 
 ## How to present the slides
