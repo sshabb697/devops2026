@@ -13,6 +13,8 @@ If vi feels hostile: `nano file.txt` also works. Still learn vi — it is on **e
 
 ## Open and modes
 
+![Vi modes: Normal, Insert, Command](../images/linux-vi-modes.png)
+
 ```bash
 vi myconfig.conf
 vim myconfig.conf    # improved vi (usually installed)
@@ -25,19 +27,6 @@ vim myconfig.conf    # improved vi (usually installed)
 | **Command** | Save, quit, search | `:` in Normal mode |
 
 **Golden rule:** if keys do weird things, press **Esc** until you are in Normal mode.
-
-```
-  Esc
-  ┌──────────┐     i / a / o      ┌──────────┐
-  │  NORMAL  │ ───────────────►   │  INSERT  │
-  │  (Esc)   │ ◄───────────────   │  (type)  │
-  └────┬─────┘                    └──────────┘
-       │ :
-       ▼
-  ┌──────────┐
-  │ COMMAND  │  :w  :q  :wq  :q!
-  └──────────┘
-```
 
 ---
 

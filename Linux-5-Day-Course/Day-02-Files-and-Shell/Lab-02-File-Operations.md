@@ -2,6 +2,8 @@
 
 **Time:** 60 minutes
 
+Use the Day 2 pictures while you work: [vi modes](../images/linux-vi-modes.png) · [grep](../images/linux-grep-filter.png) · [tar.gz](../images/linux-tar-archive.png) · [pipes](../images/linux-pipes-redirection.png)
+
 ---
 
 ## Part A — Vi edit (15 min)

@@ -86,6 +86,14 @@ Linux-5-Day-Course/
 | `images/linux-architecture-layers.png` | Day 1 — architecture |
 | `images/linux-fhs-tree.png` | Day 1 — filesystem hierarchy |
 | `images/linux-path-lookup.png` | Day 1 — how commands are found |
+| `images/linux-wildcards.png` | Day 2 — globs (`*`, `?`) |
+| `images/linux-find-tree.png` | Day 2 — find |
+| `images/linux-hard-vs-symlink.png` | Day 2 — hard vs symbolic links |
+| `images/linux-du-vs-df.png` | Day 2 — du vs df |
+| `images/linux-file-types-lsl.png` | Day 2 — `ls -l` file types |
+| `images/linux-vi-modes.png` | Day 2 — vi modes |
+| `images/linux-tar-archive.png` | Day 2 — tar.gz |
+| `images/linux-grep-filter.png` | Day 2 — grep |
 | `images/linux-pipes-redirection.png` | Day 2 — pipes and redirection |
 | `images/linux-file-permissions-rwx.png` | Day 3 — permissions |
 | `images/linux-ssh-keys.png` | Day 3 — SSH keys |

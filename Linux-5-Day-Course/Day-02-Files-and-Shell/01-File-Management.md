@@ -12,6 +12,8 @@ Beyond Day 1 basics — links, wildcards, and finding files.
 
 ## Wildcards (globs)
 
+![Wildcards: * vs ?](../images/linux-wildcards.png)
+
 ```bash
 ls *.txt              # all .txt in current dir
 ls lab*               # starts with lab
@@ -24,6 +26,8 @@ ls [abc]*             # starts with a, b, or c
 ---
 
 ## Find files
+
+![find walks the directory tree](../images/linux-find-tree.png)
 
 ```bash
 find . -name "*.log"
@@ -40,6 +44,8 @@ find . -name "*.tmp" -delete       # careful: deletes matches
 ---
 
 ## Links
+
+![Hard link vs symbolic link](../images/linux-hard-vs-symlink.png)
 
 ```bash
 echo "data" > original.txt
@@ -63,6 +69,8 @@ DevOps uses **symlinks** constantly (`/etc/nginx/sites-enabled/` → `sites-avai
 
 ## Disk usage
 
+![du vs df](../images/linux-du-vs-df.png)
+
 ```bash
 du -sh *                # size of each item in dir
 du -sh /var/log
@@ -74,6 +82,8 @@ df -h                   # filesystem free space
 ---
 
 ## File types (Linux)
+
+![First character of ls -l](../images/linux-file-types-lsl.png)
 
 First character in `ls -l`:
 

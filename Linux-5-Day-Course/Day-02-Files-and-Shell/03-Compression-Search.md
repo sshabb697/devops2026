@@ -10,6 +10,8 @@
 
 ## Archive & compress
 
+![Create and extract tar.gz](../images/linux-tar-archive.png)
+
 ```bash
 # tar = archive (combine files)
 tar -cvf backup.tar myfolder/
@@ -41,6 +43,8 @@ tar -tzvf backup.tar.gz
 ---
 
 ## Search inside files
+
+![How grep filters log lines](../images/linux-grep-filter.png)
 
 ```bash
 grep "error" app.log

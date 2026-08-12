@@ -20,3 +20,17 @@
 - Filter logs with `grep` and pipes
 
 **Need a command?** [Cheat sheet — Day 2](../Command-Cheat-Sheet.md)
+
+## Pictures for today
+
+| Lesson | Image |
+| ------ | ----- |
+| Wildcards | [linux-wildcards.png](../images/linux-wildcards.png) |
+| find | [linux-find-tree.png](../images/linux-find-tree.png) |
+| Hard vs symlink | [linux-hard-vs-symlink.png](../images/linux-hard-vs-symlink.png) |
+| du vs df | [linux-du-vs-df.png](../images/linux-du-vs-df.png) |
+| ls -l types | [linux-file-types-lsl.png](../images/linux-file-types-lsl.png) |
+| vi modes | [linux-vi-modes.png](../images/linux-vi-modes.png) |
+| tar.gz | [linux-tar-archive.png](../images/linux-tar-archive.png) |
+| grep | [linux-grep-filter.png](../images/linux-grep-filter.png) |
+| Pipes | [linux-pipes-redirection.png](../images/linux-pipes-redirection.png) |
