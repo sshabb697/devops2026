@@ -4,6 +4,8 @@
 
 Simulate a **junior admin on-call** scenario using everything from Days 1–5.
 
+Write short notes as you go: **symptom → command that proved it → fix**.
+
 ---
 
 ## Scenario
@@ -11,14 +13,15 @@ Simulate a **junior admin on-call** scenario using everything from Days 1–5.
 Your team deployed a small web app on a Linux VM. Users report:
 
 1. Website not loading
-2. SSH works from office but a cron backup failed
+2. Internal name `myapp.local` does not resolve
 3. Disk alert at 95%
+4. Web files have the wrong owner
 
 Work through each issue in order.
 
 ---
 
-## Setup (instructor or self)
+## Setup
 
 On your VM / WSL:
 
@@ -30,17 +33,23 @@ mkdir -p ~/linux-course/capstone
 cd ~/linux-course/capstone
 ```
 
+Confirm baseline:
+
+```bash
+curl -I localhost
+```
+
 ---
 
-## Issue 1 — Website not loading (25 min)
+## Issue 1 — Website not loading (20 min)
 
 **Investigate:**
 
 ```bash
-systemctl status nginx
+systemctl status nginx --no-pager
 curl -I localhost
 ss -tulpn | grep :80
-sudo journalctl -u nginx -n 20
+sudo journalctl -u nginx -n 20 --no-pager
 ```
 
 **Break it (practice):**
@@ -49,6 +58,8 @@ sudo journalctl -u nginx -n 20
 sudo systemctl stop nginx
 curl -I localhost
 ```
+
+Expected: connection refused.
 
 **Fix:**
 
@@ -61,14 +72,16 @@ Document: What was wrong? What command proved it?
 
 ---
 
-## Issue 2 — DNS / connectivity (25 min)
+## Issue 2 — DNS / connectivity (20 min)
 
 ```bash
 ping -c 3 8.8.8.8
-ping -c 3 github.com
-dig github.com +short
+ping -c 3 example.com
+dig example.com +short
 cat /etc/resolv.conf
 ```
+
+If IP ping works and name fails, you have a DNS problem. If both work, continue.
 
 Add a hosts entry for a fake internal name:
 
@@ -77,16 +90,26 @@ echo "127.0.0.1 myapp.local" | sudo tee -a /etc/hosts
 curl -I http://myapp.local
 ```
 
-**Cron check** — backup script every 5 min:
+Expected: nginx responds for `myapp.local`.
+
+**Backup script (run now — do not wait 5 minutes):**
 
 ```bash
-echo '#!/bin/bash' > ~/backup.sh
-echo 'date >> ~/backup.log' >> ~/backup.sh
-echo 'curl -sf http://myapp.local > /dev/null || echo FAIL >> ~/backup.log' >> ~/backup.sh
+cat <<'EOF' > ~/backup.sh
+#!/bin/bash
+date >> ~/backup.log
+curl -sf http://myapp.local > /dev/null || echo FAIL >> ~/backup.log
+EOF
 chmod +x ~/backup.sh
-(crontab -l 2>/dev/null; echo "*/5 * * * * $HOME/backup.sh") | crontab -
-sleep 330
+~/backup.sh
 cat ~/backup.log
+```
+
+Optional cron (every 5 minutes) — use full path:
+
+```bash
+(crontab -l 2>/dev/null; echo "*/5 * * * * $HOME/backup.sh >> $HOME/backup.log 2>&1") | crontab -
+crontab -l
 ```
 
 ---
@@ -99,6 +122,8 @@ dd if=/dev/zero of=~/linux-course/capstone/bigfile bs=1M count=200
 df -h ~
 du -sh ~/linux-course/capstone/*
 ```
+
+Expected: `bigfile` is about 200 MB.
 
 **Fix:**
 
@@ -120,9 +145,9 @@ chmod 640 ~/linux-course/capstone/web/index.html
 ls -l ~/linux-course/capstone/web/
 ```
 
-If nginx runs as `www-data`, would it read your home file? (Usually no — good.)
+If nginx runs as `www-data`, it usually **cannot** read files under your home directory. That is correct.
 
-Create proper shared config:
+Create a proper web root:
 
 ```bash
 sudo mkdir -p /var/www/capstone
@@ -141,10 +166,10 @@ ls -la /var/www/capstone/
 | Service down | `systemctl`, `journalctl` |
 | Port listening | `ss`, `curl` |
 | DNS | `dig`, `/etc/hosts` |
-| Cron | `crontab -e`, log file |
+| Cron | script + optional `crontab` |
 | Disk full | `df`, `du`, cleanup |
 | Permissions | `chmod`, `chown` |
-| SSH (Day 3) | key login to VM |
+| SSH (Day 3) | key login to VM (optional) |
 
 ---
 
@@ -152,4 +177,6 @@ ls -la /var/www/capstone/
 
 You finished the **5-day Linux essentials** track.
 
-**Next steps:** Azure VM admin (AZ-104), Docker, Ansible, or CKA/Linux+ certification prep.
+Keep using the [Command Cheat Sheet](../Command-Cheat-Sheet.md) on the job.
+
+**Next steps:** Azure VM admin (AZ-104), Docker, Ansible, or Linux+ / CKA prep.

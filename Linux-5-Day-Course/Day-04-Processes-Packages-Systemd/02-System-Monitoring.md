@@ -1,5 +1,11 @@
 # 02 — System Monitoring
 
+**Learning objectives**
+
+- Read load, memory, and disk at a glance
+- Follow logs with `journalctl` and `tail -f`
+- Use a simple “why is it slow?” checklist
+
 ---
 
 ## CPU & memory at a glance
@@ -13,7 +19,9 @@ lscpu
 free -h               # RAM and swap
 ```
 
-**Load average** ≈ average runnable processes. Rule of thumb: sustained load > number of cores → investigate.
+**Load average** ≈ average runnable processes. Rule of thumb: sustained load **greater than the number of cores** → investigate.
+
+`free -h`: watch **available** (not only “free”). Linux uses idle RAM for cache — that is normal.
 
 ---
 
@@ -39,6 +47,8 @@ tail -n 50 /var/log/auth.log        # SSH / sudo attempts
 dmesg | tail                        # kernel messages
 ```
 
+On some Ubuntu versions, `syslog` is replaced by the journal only — `journalctl` still works.
+
 ---
 
 ## Useful one-liners
@@ -63,5 +73,22 @@ ss -tulpn | grep LISTEN
 2. `df -h` — disk full?
 3. `journalctl -u <service>` — app errors?
 4. `ss -tulpn` — port already in use?
+
+---
+
+## Knowledge check
+
+1. What does `uptime` show besides how long the machine has been on?
+2. `df` vs `du`?
+3. How do you follow nginx logs live?
+
+<details>
+<summary>Answers</summary>
+
+1. Load averages (1, 5, 15 minutes).
+2. `df` = free space on filesystems; `du` = size of a directory.
+3. `journalctl -u nginx -f` or `tail -f /var/log/nginx/access.log`.
+
+</details>
 
 ➡️ Next: [03 — Package Management](./03-Package-Management.md)

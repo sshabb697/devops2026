@@ -1,5 +1,11 @@
 # 03 — Compression & Search
 
+**Learning objectives**
+
+- Create and extract `.tar.gz` archives
+- Search file contents with `grep`
+- Count and sort unique lines
+
 ---
 
 ## Archive & compress
@@ -9,7 +15,7 @@
 tar -cvf backup.tar myfolder/
 tar -xvf backup.tar
 
-# gzip compression
+# gzip compression (most common in DevOps)
 tar -czvf backup.tar.gz myfolder/
 tar -xzvf backup.tar.gz
 
@@ -24,7 +30,13 @@ unzip backup.zip
 | `x` | extract |
 | `z` | gzip |
 | `v` | verbose |
-| `f` | filename |
+| `f` | filename (must be last flag before the file name) |
+
+List without extracting:
+
+```bash
+tar -tzvf backup.tar.gz
+```
 
 ---
 
@@ -35,6 +47,8 @@ grep "error" app.log
 grep -i "failed" /var/log/syslog    # case insensitive
 grep -r "password" /etc/nginx/        # recursive
 grep -n "listen" nginx.conf           # show line numbers
+grep -v INFO app.log                  # invert: lines that do NOT match
+grep -c ERROR app.log                 # count matches
 ```
 
 ---
@@ -42,6 +56,7 @@ grep -n "listen" nginx.conf           # show line numbers
 ## Find + grep combo
 
 ```bash
+grep -R "TODO" --include="*.sh" .
 find /var/log -name "*.log" -exec grep -l "error" {} \;
 ```
 
@@ -52,8 +67,25 @@ find /var/log -name "*.log" -exec grep -l "error" {} \;
 ```bash
 sort names.txt
 sort -n numbers.txt       # numeric
-uniq sorted.txt           # remove adjacent duplicates
+uniq sorted.txt           # remove adjacent duplicates (sort first!)
 sort names.txt | uniq -c  # count occurrences
 ```
+
+---
+
+## Knowledge check
+
+1. Which flags create a gzip tar named `logs.tar.gz` from folder `logs/`?
+2. How do you show line numbers with grep?
+3. Why does `uniq` often follow `sort`?
+
+<details>
+<summary>Answers</summary>
+
+1. `tar -czvf logs.tar.gz logs/`
+2. `grep -n`
+3. `uniq` only collapses **adjacent** duplicates, so sort first.
+
+</details>
 
 ➡️ Next: [04 — I/O Redirection](./04-IO-Redirection.md)

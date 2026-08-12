@@ -2,6 +2,12 @@
 
 **systemd** is PID 1 on most modern Linux distros. It starts services, mounts disks, and manages targets (like old runlevels).
 
+**Learning objectives**
+
+- Start, stop, restart, enable a service
+- Read unit logs with `journalctl`
+- Contrast `restart` vs `reload`
+
 ---
 
 ## Essential commands
@@ -12,14 +18,17 @@ systemctl status nginx
 
 sudo systemctl start nginx
 sudo systemctl stop nginx
-sudo systemctl restart nginx
-sudo systemctl reload nginx
+sudo systemctl restart nginx      # stop + start (brief downtime)
+sudo systemctl reload nginx       # reread config if supported
 
 sudo systemctl enable nginx        # start on boot
 sudo systemctl disable nginx
+sudo systemctl enable --now nginx  # enable + start in one step
 sudo systemctl is-enabled nginx
 sudo systemctl is-active nginx
 ```
+
+`status` shows: running or failed, main PID, recent log lines.
 
 ---
 
@@ -71,6 +80,8 @@ sudo systemctl enable --now myapp
 systemctl status myapp
 ```
 
+After **editing** a unit file, always `daemon-reload`.
+
 ---
 
 ## Runlevels → targets (legacy mapping)
@@ -84,5 +95,22 @@ systemctl status myapp
 ```bash
 systemctl get-default
 ```
+
+---
+
+## Knowledge check
+
+1. `enable` vs `start`?
+2. When do you `daemon-reload`?
+3. How do you see the last 50 nginx log lines?
+
+<details>
+<summary>Answers</summary>
+
+1. `start` = now. `enable` = also on boot. `enable --now` does both.
+2. After changing a `.service` file.
+3. `journalctl -u nginx -n 50`
+
+</details>
 
 ➡️ Next: [Lab 04](./Lab-04-Services-Packages.md)

@@ -11,3 +11,12 @@
 | Lab | [Lab 04 — Services & Packages](./Lab-04-Services-Packages.md) | 60m |
 
 **Day 4 deliverable:** You can find a runaway process, install nginx, and enable it on boot.
+
+**By the end of today you should be able to:**
+
+- Find a PID and stop it with `kill` (not `-9` first)
+- Read `top`, `free`, `df`
+- Install with `apt`
+- `start` / `stop` / `enable` a systemd service and read `journalctl`
+
+**Need a command?** [Cheat sheet — Day 4](../Command-Cheat-Sheet.md)

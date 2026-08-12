@@ -11,3 +11,12 @@
 | Lab | [Lab 02 — File Operations](./Lab-02-File-Operations.md) | 60m |
 
 **Day 2 deliverable:** You can edit config files, find text in logs, and chain commands with pipes.
+
+**By the end of today you should be able to:**
+
+- Use wildcards and `find`
+- Save and quit in vi without panic
+- Create a `.tar.gz` backup
+- Filter logs with `grep` and pipes
+
+**Need a command?** [Cheat sheet — Day 2](../Command-Cheat-Sheet.md)

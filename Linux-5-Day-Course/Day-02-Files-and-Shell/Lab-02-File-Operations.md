@@ -6,14 +6,19 @@
 
 ## Part A — Vi edit (15 min)
 
-1. `vi ~/linux-course/app.conf`
-2. Add:
+1. `mkdir -p ~/linux-course && vi ~/linux-course/app.conf`
+2. Press `i` and add:
+
    ```
    APP_NAME=Contoso
    PORT=8080
    LOG_LEVEL=info
    ```
-3. Save and quit. Display with `cat`.
+
+3. `Esc`, then `:wq`
+4. Display with `cat ~/linux-course/app.conf`
+
+If you get stuck: `Esc` then `:q!` and start again.
 
 ---
 
@@ -36,6 +41,15 @@ grep -c ERROR app.log
 grep ERROR app.log | wc -l
 ```
 
+Expected: two ERROR lines; count is `2`.
+
+Also try:
+
+```bash
+grep -v INFO app.log
+grep -n WARN app.log
+```
+
 ---
 
 ## Part C — Archive (15 min)
@@ -44,10 +58,13 @@ grep ERROR app.log | wc -l
 cd ~/linux-course/lab02
 tar -czvf logs-backup.tar.gz logs/
 ls -lh logs-backup.tar.gz
-mkdir restore && cd restore
+mkdir -p restore && cd restore
 tar -xzvf ../logs-backup.tar.gz
 ls logs/
+cat logs/app.log
 ```
+
+Expected: `restore/logs/app.log` matches the original.
 
 ---
 
@@ -55,17 +72,27 @@ ls logs/
 
 ```bash
 cd ~/linux-course/lab02/logs
-cat app.log | grep -v INFO > errors-only.log
+grep -v INFO app.log > errors-only.log
 cat errors-only.log
 sort app.log | uniq
 ```
+
+Expected `errors-only.log`: ERROR and WARN lines only (no INFO).
+
+Bonus:
+
+```bash
+awk '{print $2}' app.log | sort | uniq -c
+```
+
+Expected: counts of INFO / ERROR / WARN.
 
 ---
 
 ## Deliverables
 
-- [ ] Edited file with vi
-- [ ] Used grep and pipe
+- [ ] Edited file with vi (`:wq`)
+- [ ] Used grep and pipe; ERROR count is 2
 - [ ] Created and extracted `.tar.gz`
 
 ➡️ **Day 3:** [Users & Security](../Day-03-Users-Security/README.md)

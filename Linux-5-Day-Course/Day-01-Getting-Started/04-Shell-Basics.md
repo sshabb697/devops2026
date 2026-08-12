@@ -1,6 +1,12 @@
 # 04 — Shell Basics
 
-Essential navigation and file commands. Practice every command in your terminal.
+**Learning objectives**
+
+- Navigate with absolute and relative paths
+- Create, copy, move, and view files
+- Understand how the shell **finds** a command (`PATH`)
+
+Practice every command in your terminal.
 
 ---
 
@@ -24,6 +30,8 @@ ls -lt          # sort by time modified
 ls -ltr         # oldest first
 ```
 
+Hidden files start with `.` — examples: `.bashrc`, `.ssh`.
+
 ---
 
 ## Change directory
@@ -43,6 +51,8 @@ cd -                       # previous directory
 | Absolute | `/` | `/home/student/linux-course` |
 | Relative | current dir | `day01/lab` |
 
+**Try this:** `pwd`, then `cd /tmp`, then `cd -`. You should return to the previous folder.
+
 ---
 
 ## Create directories and files
@@ -57,20 +67,25 @@ echo "Hello Linux" > hello.txt
 cat hello.txt
 ```
 
+`>` **overwrites**. `>>` **appends**. Day 2 covers this in depth.
+
 ---
 
 ## Copy, move, delete
 
 ```bash
+mkdir -p backup
 cp hello.txt backup/hello.txt
-cp -r mydir mydir-copy          # recursive (directories)
+cp -r asia asia-copy          # recursive (directories)
 
-mv oldname.txt newname.txt      # rename
-mv file.txt ../                 # move
+mv notes.txt notes-old.txt    # rename
+mv hello.txt backup/          # move
 
-rm file.txt                     # delete file
-rm -r mydir                     # delete directory (careful!)
+rm notes-old.txt              # delete file
+rm -r asia-copy               # delete directory (careful!)
 ```
+
+**Never** run `rm -rf /` or `rm -rf *` from `/`. There is no Recycle Bin.
 
 ---
 
@@ -81,15 +96,30 @@ cat file.txt        # full file (small files)
 less file.txt       # scrollable (q to quit)
 head -n 5 file.txt  # first 5 lines
 tail -n 20 file.txt # last 20 lines
-tail -f /var/log/syslog   # follow log live (needs permission)
 ```
+
+---
+
+## How Linux finds commands (`PATH`)
+
+![PATH lookup](../images/linux-path-lookup.png)
+
+When you type `ls`, the shell does **not** magically know `ls`. It searches directories listed in `$PATH`.
+
+```bash
+echo $PATH
+which ls          # usually /usr/bin/ls
+type ls
+```
+
+If you write a script in `~/bin` and it is “not found,” either use `./myscript.sh` or add that folder to `PATH`.
 
 ---
 
 ## Get help
 
 ```bash
-man ls              # manual page
+man ls              # manual page (q to quit)
 ls --help           # quick help
 whatis ls
 ```
@@ -104,7 +134,26 @@ whatis ls
 | `Tab` | Auto-complete |
 | `Ctrl + C` | Cancel running command |
 | `Ctrl + L` | Clear screen |
+| `Ctrl + R` | Search history |
 | `history` | Show command history |
+| `history \| grep mkdir` | Find an old command |
+
+Optional aliases (add to `~/.bashrc`, then `source ~/.bashrc`):
+
+```bash
+alias ll='ls -la'
+alias gs='git status'
+```
+
+---
+
+## Common mistakes
+
+| You typed | What happened |
+| --------- | ------------- |
+| `cd linux-course` from the wrong folder | `No such file or directory` — `pwd` then use `~/linux-course` |
+| `cat Hello.txt` | Linux is **case-sensitive** |
+| `rm -r folder` without checking | Folder is gone — pause before `-r` |
 
 ---
 
@@ -113,5 +162,16 @@ whatis ls
 1. Difference between `cp` and `mv`?
 2. What does `mkdir -p a/b/c` do?
 3. How do you list hidden files?
+4. Why might `myscript.sh` say “command not found”?
+
+<details>
+<summary>Answers</summary>
+
+1. `cp` copies (original remains). `mv` moves or renames (original path gone).
+2. Creates `a`, `a/b`, and `a/b/c` even if parents do not exist.
+3. `ls -la` (or `ls -a`).
+4. The current directory is usually **not** in `PATH`. Run `./myscript.sh` after `chmod +x`.
+
+</details>
 
 ➡️ Next: [05 — Filesystem Hierarchy](./05-Filesystem-Hierarchy.md)

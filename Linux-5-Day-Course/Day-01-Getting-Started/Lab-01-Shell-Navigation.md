@@ -3,6 +3,8 @@
 **Time:** 60 minutes  
 **Goal:** Build a directory tree using only the shell.
 
+Work in **Ubuntu** (WSL or VM), not PowerShell.
+
 ---
 
 ## Setup
@@ -14,11 +16,13 @@ cd linux-course/lab01
 pwd
 ```
 
+Expected: `/home/<you>/linux-course/lab01`
+
 ---
 
 ## Part A — Create the structure (20 min)
 
-Create this tree (replace `student` with your username):
+Create this tree:
 
 ```
 linux-course/lab01/
@@ -35,14 +39,12 @@ linux-course/lab01/
 └── notes.txt
 ```
 
-**Commands (try yourself first, then check):**
+**Try yourself first**, then compare:
 
 ```bash
 mkdir -p continents/asia/india/mumbai
 mkdir -p continents/europe
 mkdir -p continents/africa/egypt/cairo
-touch continents/asia/india/mumbai/city.txt
-touch continents/africa/egypt/cairo/city.txt
 echo "Mumbai" > continents/asia/india/mumbai/city.txt
 echo "Cairo" > continents/africa/egypt/cairo/city.txt
 echo "Day 1 complete" > notes.txt
@@ -52,37 +54,48 @@ Verify:
 
 ```bash
 find continents -type f
-tree continents   # install: sudo apt install tree
+sudo apt install -y tree
+tree continents
 ```
 
-✅ **Checkpoint:** `find` or `tree` shows all files.
+Expected `find` output includes:
+
+```
+continents/asia/india/mumbai/city.txt
+continents/africa/egypt/cairo/city.txt
+```
+
+✅ **Checkpoint:** `find` or `tree` shows both city files.
 
 ---
 
 ## Part B — Navigation practice (15 min)
 
-1. `cd continents/asia/india/mumbai` → `pwd` → `cat city.txt`
-2. `cd ../../../../` → confirm you are back at `lab01`
-3. Use **absolute path**: `cat ~/linux-course/lab01/notes.txt`
-4. Use **relative path** from `lab01`: `cat continents/africa/egypt/cairo/city.txt`
+1. `cd continents/asia/india/mumbai` → `pwd` → `cat city.txt`  
+   Expected: `Mumbai`
+2. `cd ../../../../` → `pwd`  
+   Expected: you are back in `lab01`
+3. Absolute path: `cat ~/linux-course/lab01/notes.txt`  
+   Expected: `Day 1 complete`
+4. Relative path from `lab01`: `cat continents/africa/egypt/cairo/city.txt`  
+   Expected: `Cairo`
 
 ---
 
 ## Part C — Copy, move, rename (15 min)
 
 ```bash
-# Rename a folder (fix typo exercise)
-mkdir -p continents/asia/india/munbai
-mv continents/asia/india/munbai continents/asia/india/mumbai-backup 2>/dev/null || true
-
-# Copy city file
 cp continents/asia/india/mumbai/city.txt continents/europe/city.txt
-
-# Move a file
 mv continents/europe/city.txt continents/europe/london-city.txt
-
-# List with details
+echo "London" > continents/europe/london-city.txt
 ls -la continents/europe/
+cat continents/europe/london-city.txt
+```
+
+Expected: `london-city.txt` contains `London`. Original Mumbai file is unchanged:
+
+```bash
+cat continents/asia/india/mumbai/city.txt
 ```
 
 ---
@@ -96,6 +109,18 @@ ls -ld /tmp /home /root
 ```
 
 Write one sentence: what do you expect to find in `/etc` vs `/var/log`?
+
+Suggested answer: `/etc` holds configuration; `/var/log` holds log files.
+
+---
+
+## If you get stuck
+
+| Error | Likely cause |
+| ----- | ------------ |
+| `No such file or directory` | Wrong folder — `pwd` and `cd ~/linux-course/lab01` |
+| `Permission denied` on `/root` | Normal for a regular user — use `ls -ld /root` |
+| `tree: command not found` | `sudo apt install -y tree` or use `find` |
 
 ---
 

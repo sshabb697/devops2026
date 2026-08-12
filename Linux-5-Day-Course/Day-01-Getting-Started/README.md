@@ -12,3 +12,12 @@
 | Lab | [Lab 01 — Shell Navigation](./Lab-01-Shell-Navigation.md) | 60m |
 
 **Day 1 deliverable:** You can open a terminal, move around the filesystem, create folders/files, and explain `/etc`, `/home`, `/var`.
+
+**By the end of today you should be able to:**
+
+- Explain why DevOps work happens on Linux
+- Name the kernel, shell, and a distro
+- Use `pwd`, `ls`, `cd`, `mkdir -p`, `cat`, `cp`, `mv`
+- Point to `/etc` (config) vs `/var/log` (logs)
+
+**Need a command?** [Cheat sheet — Day 1](../Command-Cheat-Sheet.md)

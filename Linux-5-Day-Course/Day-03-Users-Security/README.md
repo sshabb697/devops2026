@@ -11,3 +11,12 @@
 | Lab | [Lab 03 — Permissions & SSH](./Lab-03-Permissions-SSH.md) | 60m |
 
 **Day 3 deliverable:** You can lock down files, add a user, and connect with SSH keys.
+
+**By the end of today you should be able to:**
+
+- Read `/etc/passwd` and use `sudo` safely
+- Convert `rwxr-xr-x` to `755` and back
+- Generate an SSH key and explain public vs private
+- Add a crontab line
+
+**Need a command?** [Cheat sheet — Day 3](../Command-Cheat-Sheet.md)

@@ -2,6 +2,12 @@
 
 ![Linux file permissions rwx](../images/linux-file-permissions-rwx.png)
 
+**Learning objectives**
+
+- Decode `ls -l` permission strings
+- Set modes with symbolic and octal `chmod`
+- Choose 644 / 755 / 600 for real files
+
 ---
 
 ## Read `ls -l`
@@ -15,11 +21,17 @@
 └────────── type:   - (file)
 ```
 
+Three triplets: **user** (owner), **group**, **others**.
+
 | Permission | Letter | Octal |
 | ---------- | ------ | ----- |
 | Read | r | 4 |
 | Write | w | 2 |
 | Execute | x | 1 |
+
+Add them: `rwx` = 4+2+1 = **7**, `r-x` = 4+0+1 = **5**, `r--` = **4**, `rw-` = **6**.
+
+So `rwxr-xr--` = **754**.
 
 ---
 
@@ -31,6 +43,8 @@ chmod g-w file.txt            # group - write
 chmod o=r file.txt            # others = read only
 chmod u=rwx,g=rx,o= script.sh
 ```
+
+`u` user, `g` group, `o` others, `a` all.
 
 ---
 
@@ -49,6 +63,9 @@ chmod 700 ~/.ssh       # rwx------  (SSH directory)
 | rw-r--r-- | 644 | normal files |
 | rw-r----- | 640 | group-readable configs |
 | rwx------ | 700 | private dir |
+| rw------- | 600 | secrets and private keys |
+
+**Directories need execute (`x`)** to `cd` into them. A dir that is `rw-rw-rw-` (666) is awkward to use.
 
 ---
 
@@ -60,6 +77,8 @@ sudo chown bob app.conf
 sudo chgrp www-data /var/www/html -R
 ```
 
+Web files often belong to `www-data` so nginx can read them.
+
 ---
 
 ## umask (default permissions)
@@ -68,6 +87,8 @@ sudo chgrp www-data /var/www/html -R
 umask
 umask 022    # typical: files 644, dirs 755
 ```
+
+umask **subtracts** permissions from the default. Awareness only — you will still `chmod` important files.
 
 ---
 
@@ -80,7 +101,24 @@ umask 022    # typical: files 644, dirs 755
 | sticky | Only owner deletes files in dir (`/tmp`) |
 
 ```bash
-ls -ld /tmp    # often drwxrwxrwt
+ls -ld /tmp    # often drwxrwxrwt  (t = sticky)
 ```
+
+---
+
+## Knowledge check
+
+1. What octal is `rw-r--r--`?
+2. What octal is a private SSH key?
+3. Why do directories need `x`?
+
+<details>
+<summary>Answers</summary>
+
+1. `644`
+2. `600`
+3. Execute on a directory means “enter / traverse” — without it, `cd` and path lookup fail.
+
+</details>
 
 ➡️ Next: [03 — SSH & SCP](./03-SSH-SCP.md)
