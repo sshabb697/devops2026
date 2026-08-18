@@ -1,0 +1,34 @@
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: campuscafe
+      MYSQL_USER: cafeuser
+      MYSQL_PASSWORD: cafepass
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - cafe-db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-ucafeuser", "-pcafepass"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  web:
+    build: ./web
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: db
+      DB_USER: cafeuser
+      DB_PASSWORD: cafepass
+      DB_NAME: campuscafe
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  cafe-db:
