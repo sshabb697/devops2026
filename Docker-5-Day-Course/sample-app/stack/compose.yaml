@@ -1,0 +1,24 @@
+services:
+  web:
+    build:
+      context: ..
+    image: campus-hello:1.0
+    ports:
+      - "8080:80"
+    depends_on:
+      - cache
+    networks:
+      - appnet
+
+  cache:
+    image: redis:7-alpine
+    volumes:
+      - cachedata:/data
+    networks:
+      - appnet
+
+volumes:
+  cachedata:
+
+networks:
+  appnet:

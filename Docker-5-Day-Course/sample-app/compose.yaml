@@ -1,0 +1,7 @@
+services:
+  web:
+    build: .
+    image: campus-hello:1.0
+    ports:
+      - "8080:80"
+    restart: unless-stopped

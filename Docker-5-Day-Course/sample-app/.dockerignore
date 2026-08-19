@@ -1,0 +1,3 @@
+# junk that should not go in the image
+.git
+*.md
