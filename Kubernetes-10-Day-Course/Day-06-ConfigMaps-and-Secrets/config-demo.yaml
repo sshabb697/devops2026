@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: class-config
+data:
+  WELCOME: "Hello class"
+  THEME: "blue"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-demo
+spec:
+  containers:
+    - name: app
+      image: busybox
+      command: ["sh", "-c", "echo WELCOME=$WELCOME THEME=$THEME; sleep 3600"]
+      envFrom:
+        - configMapRef:
+            name: class-config

@@ -73,6 +73,7 @@ Docker-5-Day-Course/
 | After Docker… | Continue with… |
 | ------------- | -------------- |
 | Need Linux first | [Linux 5-Day Course](../Linux-5-Day-Course/) |
+| Kubernetes + AKS | [Kubernetes 10-Day Course](../Kubernetes-10-Day-Course/) |
 | CI/CD | [Azure DevOps 6-Day Course](../Azure-DevOps-6-Day-Course/) |
 | Cloud VMs | [AZ-104 Azure Administrator](../AZ-104-Azure-Administrator/) |
 
