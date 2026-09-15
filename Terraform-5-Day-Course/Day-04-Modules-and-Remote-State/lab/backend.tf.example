@@ -1,0 +1,5 @@
+# Lab 04B only. Rename to backend.tf after you have Azure storage for state.
+#
+# terraform {
+#   backend "azurerm" {}
+# }

@@ -1,0 +1,4 @@
+resource_group_name  = "tfclass-state-rg"
+storage_account_name = "YOURUNIQUEACCOUNT"
+container_name       = "tfstate"
+key                  = "student.tfstate"
