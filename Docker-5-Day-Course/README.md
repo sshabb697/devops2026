@@ -76,6 +76,7 @@ Docker-5-Day-Course/
 | Kubernetes + AKS | [Kubernetes 10-Day Course](../Kubernetes-10-Day-Course/) |
 | Terraform on Azure | [Terraform 5-Day Course](../Terraform-5-Day-Course/) |
 | CI/CD | [Azure DevOps 6-Day Course](../Azure-DevOps-6-Day-Course/) |
+| Metrics & logs | [Observability 5-Day Course](../Observability-5-Day-Course/) |
 | Cloud VMs | [AZ-104 Azure Administrator](../AZ-104-Azure-Administrator/) |
 
 ---

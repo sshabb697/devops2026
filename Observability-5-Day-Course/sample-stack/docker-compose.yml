@@ -1,0 +1,77 @@
+services:
+  demo-app:
+    image: python:3.12-alpine
+    command: ["python", "-u", "/app/server.py"]
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./demo-app/server.py:/app/server.py:ro
+      - ./logs:/logs
+    networks:
+      - observability
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --web.enable-lifecycle
+    networks:
+      - observability
+
+  node-exporter:
+    image: prom/node-exporter:v1.8.2
+    ports:
+      - "9100:9100"
+    networks:
+      - observability
+
+  loki:
+    image: grafana/loki:3.2.0
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./loki/loki-config.yaml:/etc/loki/local-config.yaml:ro
+    command: ["-config.file=/etc/loki/local-config.yaml"]
+    networks:
+      - observability
+
+  alloy:
+    image: grafana/alloy:v1.5.1
+    ports:
+      - "12345:12345"
+    volumes:
+      - ./alloy/config.alloy:/etc/alloy/config.alloy:ro
+      - ./logs:/var/log/demo:ro
+    command:
+      - run
+      - /etc/alloy/config.alloy
+      - --server.http.listen-addr=0.0.0.0:12345
+      - --storage.path=/var/lib/alloy/data
+    depends_on:
+      - loki
+    networks:
+      - observability
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+    depends_on:
+      - prometheus
+      - loki
+    networks:
+      - observability
+
+networks:
+  observability:
+    driver: bridge

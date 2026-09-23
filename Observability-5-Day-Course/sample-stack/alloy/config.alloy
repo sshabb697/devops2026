@@ -1,0 +1,26 @@
+// Grafana Alloy — one agent for logs (and later metrics).
+// Docs: https://grafana.com/docs/alloy/latest/
+
+logging {
+  level = "info"
+}
+
+// Find log files. Extra labels become Loki labels.
+local.file_match "demo" {
+  path_targets = [{
+    __path__ = "/var/log/demo/*.log",
+    job      = "demo",
+    host     = "lab",
+  }]
+}
+
+loki.source.file "demo" {
+  targets    = local.file_match.demo.targets
+  forward_to = [loki.write.default.receiver]
+}
+
+loki.write "default" {
+  endpoint {
+    url = "http://loki:3100/loki/api/v1/push"
+  }
+}

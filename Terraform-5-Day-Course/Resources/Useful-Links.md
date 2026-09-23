@@ -24,5 +24,6 @@ Class first. These are extra.
 ## After this course
 
 - [Terraform in Azure Pipelines](https://developer.hashicorp.com/terraform/tutorials/automation/azure-pipelines)
+- **Linux VM pipeline (this repo):** [pipelines/linux-vm](../pipelines/linux-vm/) — Azure DevOps YAML for [06_vm_linux](https://github.com/sshabb697/terraform-course/tree/main/06_vm_linux)
 - [Sentinel / policy](https://developer.hashicorp.com/sentinel) (later)
 - Modules in the [public registry](https://registry.terraform.io/)

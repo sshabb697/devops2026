@@ -1,0 +1,180 @@
+# Creates the Linux VM from 06_vm_linux
+# Uses Terraform extension tasks (not Azure CLI scripts).
+# Install: Marketplace → "Terraform" by Charles Zipp
+#   (If you installed Microsoft DevLabs instead, change TerraformTaskV4@4 → TerraformTask@5)
+#
+# Default CI = plan only. Manual run: set action to apply or destroy.
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - 06_vm_linux/**
+      - azure-pipelines.yml
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - 06_vm_linux/**
+
+parameters:
+  - name: action
+    displayName: Terraform action
+    type: string
+    default: plan
+    values:
+      - plan
+      - apply
+      - destroy
+
+variables:
+  - group: terraform-linux-vm
+  - name: workingDirectory
+    value: $(System.DefaultWorkingDirectory)/06_vm_linux
+  - name: azureServiceConnection
+    value: azure-terraform
+  - name: terraformVersion
+    value: 1.6.6
+
+pool:
+  vmImage: ubuntu-22.04
+
+stages:
+  - stage: Validate
+    displayName: Validate and plan
+    jobs:
+      - job: Plan
+        displayName: Terraform init / validate / plan
+        steps:
+          - checkout: self
+
+          - task: TerraformInstaller@1
+            displayName: Install Terraform
+            inputs:
+              terraformVersion: $(terraformVersion)
+
+          - task: TerraformTaskV4@4
+            displayName: Terraform init
+            inputs:
+              provider: azurerm
+              command: init
+              workingDirectory: $(workingDirectory)
+              backendServiceArm: $(azureServiceConnection)
+              backendAzureRmResourceGroupName: $(TF_BACKEND_RG)
+              backendAzureRmStorageAccountName: $(TF_BACKEND_STORAGE)
+              backendAzureRmContainerName: $(TF_BACKEND_CONTAINER)
+              backendAzureRmKey: $(TF_BACKEND_KEY)
+
+          - task: TerraformTaskV4@4
+            displayName: Terraform validate
+            inputs:
+              provider: azurerm
+              command: validate
+              workingDirectory: $(workingDirectory)
+              environmentServiceNameAzureRM: $(azureServiceConnection)
+
+          - task: TerraformTaskV4@4
+            displayName: Terraform plan
+            inputs:
+              provider: azurerm
+              command: plan
+              workingDirectory: $(workingDirectory)
+              environmentServiceNameAzureRM: $(azureServiceConnection)
+              commandOptions: -input=false -out=tfplan
+
+          - task: PublishPipelineArtifact@1
+            displayName: Publish plan file
+            inputs:
+              targetPath: $(workingDirectory)/tfplan
+              artifact: tfplan
+
+  - stage: Apply
+    displayName: Apply (create Linux VM)
+    dependsOn: Validate
+    condition: and(succeeded(), eq('${{ parameters.action }}', 'apply'))
+    jobs:
+      - deployment: ApplyVm
+        displayName: Terraform apply
+        environment: linux-vm-apply
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+
+                - download: current
+                  artifact: tfplan
+
+                - task: TerraformInstaller@1
+                  displayName: Install Terraform
+                  inputs:
+                    terraformVersion: $(terraformVersion)
+
+                - task: TerraformTaskV4@4
+                  displayName: Terraform init
+                  inputs:
+                    provider: azurerm
+                    command: init
+                    workingDirectory: $(workingDirectory)
+                    backendServiceArm: $(azureServiceConnection)
+                    backendAzureRmResourceGroupName: $(TF_BACKEND_RG)
+                    backendAzureRmStorageAccountName: $(TF_BACKEND_STORAGE)
+                    backendAzureRmContainerName: $(TF_BACKEND_CONTAINER)
+                    backendAzureRmKey: $(TF_BACKEND_KEY)
+
+                - bash: cp "$(Pipeline.Workspace)/tfplan/tfplan" "$(workingDirectory)/tfplan"
+                  displayName: Copy plan artifact
+
+                - task: TerraformTaskV4@4
+                  displayName: Terraform apply
+                  inputs:
+                    provider: azurerm
+                    command: apply
+                    workingDirectory: $(workingDirectory)
+                    environmentServiceNameAzureRM: $(azureServiceConnection)
+                    commandOptions: -input=false -auto-approve tfplan
+
+  - stage: Destroy
+    displayName: Destroy Linux VM
+    dependsOn: Validate
+    condition: and(succeeded(), eq('${{ parameters.action }}', 'destroy'))
+    jobs:
+      - deployment: DestroyVm
+        displayName: Terraform destroy
+        environment: linux-vm-apply
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+
+                - task: TerraformInstaller@1
+                  displayName: Install Terraform
+                  inputs:
+                    terraformVersion: $(terraformVersion)
+
+                - task: TerraformTaskV4@4
+                  displayName: Terraform init
+                  inputs:
+                    provider: azurerm
+                    command: init
+                    workingDirectory: $(workingDirectory)
+                    backendServiceArm: $(azureServiceConnection)
+                    backendAzureRmResourceGroupName: $(TF_BACKEND_RG)
+                    backendAzureRmStorageAccountName: $(TF_BACKEND_STORAGE)
+                    backendAzureRmContainerName: $(TF_BACKEND_CONTAINER)
+                    backendAzureRmKey: $(TF_BACKEND_KEY)
+
+                - task: TerraformTaskV4@4
+                  displayName: Terraform destroy
+                  inputs:
+                    provider: azurerm
+                    command: destroy
+                    workingDirectory: $(workingDirectory)
+                    environmentServiceNameAzureRM: $(azureServiceConnection)
+                    commandOptions: -input=false -auto-approve
