@@ -25,7 +25,7 @@ Many enterprises run **Grafana on Azure** with datasources for Monitor, Promethe
 
 1. **Alert** fires: HTTP 5xx rate high (Azure metric alert or Grafana alert).
 2. Open **Grafana dashboard** — latency and errors up; CPU normal.
-3. **Explore → Loki** — `{app="api"} |= "timeout"` spikes after 14:05.
+3. **Explore → Loki** — `{job="demo", level="ERROR"} | json` shows failures on version `2.0.0`.
 4. **Azure Activity log** — no infra changes; check **deployment pipeline** at 14:04.
 5. Roll back release; watch metrics return green.
 
@@ -56,9 +56,9 @@ When logs and metrics are not enough:
 
 | Goal | Course |
 | ---- | ------ |
-| Run workloads that expose metrics | [Kubernetes 10-Day](../Kubernetes-10-Day-Course/) |
-| Automate Azure monitoring as code | [Terraform 5-Day](../Terraform-5-Day-Course/) |
-| CI/CD and deployment markers | [Azure DevOps 6-Day](../Azure-DevOps-6-Day-Course/) |
+| Run workloads that expose metrics | [Kubernetes 10-Day](../../Kubernetes-10-Day-Course/) |
+| Automate Azure monitoring as code | [Terraform 5-Day](../../Terraform-5-Day-Course/) |
+| CI/CD and deployment markers | [Azure DevOps 6-Day](../../Azure-DevOps-6-Day-Course/) |
 
 ---
 

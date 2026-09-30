@@ -21,17 +21,29 @@ Expected: `Prometheus Server is Healthy.`
 
 1. Open http://localhost:9090/targets
 2. Confirm jobs **prometheus**, **node**, and **demo-app** are **UP**.
-3. Open http://localhost:8080/metrics — you should see `demo_requests_total`.
+3. Open http://localhost:8080/metrics — you should see `demo_up`.
 
 If DOWN: `docker compose logs prometheus` and check `prometheus/prometheus.yml`.
 
 In Graph, also try:
 
 ```promql
-demo_requests_total
+demo_up
 ```
 
-Refresh http://localhost:8080 a few times and run the query again. The number should rise.
+Generate realistic checkout traffic:
+
+```bash
+docker compose run --rm load-generator --requests 40 --interval-ms 100
+```
+
+Wait up to 15 seconds for the next scrape, then query:
+
+```promql
+sum by (status) (demo_http_requests_total)
+```
+
+The total should rise and status `200` should be present.
 
 ✅ **Checkpoint:** Screenshot of all targets UP.
 
@@ -46,18 +58,28 @@ up
 ```
 
 ```promql
-rate(node_cpu_seconds_total{mode="idle"}[5m])
+sum by (status) (rate(demo_http_requests_total[1m]))
 ```
 
 ```promql
-100 - (avg(rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
+histogram_quantile(
+	0.95,
+	sum by (le) (
+		rate(demo_http_request_duration_seconds_bucket{route="/checkout"}[5m])
+	)
+)
 ```
 
-Last query approximates **CPU busy %** (lab math — good enough for learning).
+These are two RED signals: **rate** and **duration**. Generate slow traffic and
+run the p95 query again:
+
+```bash
+docker compose run --rm load-generator --requests 30 --delay-ms 600 --interval-ms 100
+```
 
 Switch time range to **1h** if the graph looks flat.
 
-✅ **Checkpoint:** You explain what `rate` does in one sentence.
+✅ **Checkpoint:** You explain why a counter needs `rate()` and what p95 means.
 
 ---
 
@@ -67,7 +89,7 @@ Switch time range to **1h** if the graph looks flat.
 curl -s http://localhost:9100/metrics | head -n 30
 ```
 
-Find one line starting with `# HELP` and one counter line.
+Find one line starting with `# HELP` and one `node_` counter line.
 
 ✅ **Checkpoint:** You match a line from curl to a name in the Prometheus UI dropdown.
 
@@ -85,7 +107,7 @@ Find one line starting with `# HELP` and one counter line.
 
 ## Deliverables
 
-- Screenshot: CPU busy graph + targets page.
+- Screenshot: checkout request rate, p95 latency, and targets page.
 - Written answer: pull vs push in your own words.
 
 ➡️ Tomorrow: [Day 4 — Loki](../Day-04-Loki/README.md)

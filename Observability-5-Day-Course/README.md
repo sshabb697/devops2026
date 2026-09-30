@@ -16,9 +16,9 @@ By the end of the week you can:
 
 1. Explain **metrics, logs, and traces** and when each helps during an incident.
 2. Use **Azure Monitor** to view metrics, run a simple **KQL** query, and create an alert.
-3. Run **Prometheus**, understand scrape targets, and write basic **PromQL**.
-4. Ship logs to **Loki** with **Grafana Alloy** and search them with **LogQL**.
-5. Build a **Grafana** dashboard that combines Azure or Prometheus metrics with Loki logs.
+3. Deploy an instrumented checkout API and investigate RED metrics in **Prometheus**.
+4. Parse and ship structured logs to **Loki** with **Grafana Alloy**.
+5. Correlate PromQL and LogQL in **Grafana** during a versioned deployment incident.
 
 | Day | Topic | Outcome |
 | --- | ----- | ------- |
@@ -61,7 +61,7 @@ Observability-5-Day-Course/
 ├── Command-Cheat-Sheet.md
 ├── Tutor-Notes.md
 ├── Resources/
-├── sample-stack/          # demo app + Prometheus + Alloy + Loki + Grafana
+├── sample-stack/          # checkout API + Prometheus + Alloy + Loki + Grafana
 ├── Day-01-Observability-Fundamentals/
 ├── Day-02-Azure-Monitor/
 ├── Day-03-Prometheus/
@@ -95,7 +95,7 @@ docker compose up -d
 | --- | ------------- |
 | Grafana http://localhost:3000 | `admin` / `admin` (change on first login) |
 | Prometheus http://localhost:9090 | — |
-| Demo app http://localhost:8080 | — |
+| Checkout API http://localhost:8080 | — |
 | Alloy http://localhost:12345 | — |
 | Loki http://localhost:3100/ready | — |
 

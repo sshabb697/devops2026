@@ -20,17 +20,23 @@ Open http://localhost:12345 — Alloy UI loads.
 
 ---
 
-## Part B — Generate logs (15 min)
+## Part B — Generate structured logs (15 min)
 
-The demo app writes `logs/app.log` for you:
+Run healthy traffic, then one intentional failure:
 
 ```bash
-curl -s http://localhost:8080/
-curl -s http://localhost:8080/
-curl -s http://localhost:8080/error
+docker compose run --rm load-generator --requests 20 --interval-ms 100
+docker compose run --rm load-generator --requests 4 --error-every 4 --delay-ms 600
 ```
 
-Or open those URLs in a browser.
+Inspect the source file. Each line is a JSON object with the same fields:
+
+```bash
+docker compose exec demo-app tail -n 3 /logs/app.log
+```
+
+Look for `timestamp`, `level`, `service`, `version`, `route`, `status`, and
+`duration_ms`.
 
 Wait about 10 seconds. Alloy pushes new lines to Loki.
 
@@ -39,20 +45,31 @@ Wait about 10 seconds. Alloy pushes new lines to Loki.
 ## Part C — Query in Grafana (20 min)
 
 1. http://localhost:3000 → **Explore** → datasource **Loki**.
-2. Query: `{job="demo"}`
-3. Query: `{job="demo"} |= "ERROR"`
+2. Show the stream: `{job="demo", service="checkout-api"}`
+3. Use the indexed level label: `{job="demo", level="ERROR"}`
+4. Parse fields and find slow requests:
 
-You should see `payment timeout` from `/error`.
+```logql
+{job="demo"} | json | duration_ms > 500
+```
+
+5. Find server failures by parsed status:
+
+```logql
+{job="demo"} | json | status >= 500
+```
+
+Expand a result and distinguish **stream labels** from **parsed fields**.
 
 ---
 
 ## Part D — Count lines (10 min)
 
 ```logql
-sum(count_over_time({job="demo"}[10m]))
+sum by (version) (count_over_time({job="demo", level="ERROR"}[10m]))
 ```
 
-Hit `/` again. Run the query again. The number goes up.
+Run failing traffic again. The count for version `1.0.0` goes up.
 
 ---
 
@@ -60,7 +77,7 @@ Hit `/` again. Run the query again. The number goes up.
 
 ```bash
 docker compose stop alloy
-curl -s http://localhost:8080/
+docker compose run --rm load-generator --requests 5
 ```
 
 The new line is in `logs/app.log` but **not** in Grafana yet.
@@ -75,7 +92,8 @@ Wait, then refresh Explore. The line appears. Path: **app file → Alloy → Lok
 
 ## Deliverables
 
-- [ ] ERROR filter shows the payment line
-- [ ] You can say Alloy pushes; Loki stores; Grafana queries
+- [ ] ERROR filter shows the failed checkout line
+- [ ] A slow-request query returns `duration_ms > 500`
+- [ ] You can say Alloy discovers and parses; Loki stores; Grafana queries
 
 ➡️ Tomorrow: [Day 5 — Grafana and capstone](../Day-05-Grafana-and-Capstone/README.md)

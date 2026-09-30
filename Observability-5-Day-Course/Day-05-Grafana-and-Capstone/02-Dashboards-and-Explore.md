@@ -3,8 +3,31 @@
 **Learning objectives**
 
 - Build a panel from PromQL and from LogQL
+- Read and modify a provisioned service dashboard
 - Import a community dashboard safely
 - Use variables (introduction)
+
+---
+
+## Start with the reference dashboard
+
+Open **Dashboards → Course Examples → Checkout Service Overview**. It is
+provisioned from `sample-stack/grafana/provisioning/dashboards/` and contains:
+
+| Panel | Datasource | Signal |
+| ----- | ---------- | ------ |
+| Request rate by status | Prometheus | Rate and errors |
+| Checkout p95 latency | Prometheus | Duration |
+| HTTP 5xx error rate | Prometheus | Errors |
+| Application logs | Loki | Request context |
+
+Generate data if the panels are empty:
+
+```bash
+docker compose run --rm load-generator --requests 40 --error-every 5 --delay-ms 300
+```
+
+Open each panel menu → **Edit** and read its query before building your own.
 
 ---
 
@@ -15,10 +38,10 @@
 3. Query:
 
 ```promql
-100 - (avg(rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
+sum by (status) (rate(demo_http_requests_total[1m]))
 ```
 
-4. Panel title: **CPU busy %**
+4. Panel title: **Checkout request rate**
 5. Save dashboard as **Obs Lab — Metrics**
 
 ---
@@ -32,10 +55,10 @@ Add second panel:
 3. Query:
 
 ```logql
-sum(count_over_time({job="demo"} |= "ERROR" [5m]))
+sum by (version) (count_over_time({job="demo", level="ERROR"}[5m]))
 ```
 
-4. Title: **ERROR log lines (5m)**
+4. Title: **ERROR logs by version**
 
 Save dashboard again.
 
@@ -70,7 +93,9 @@ Skip if time is short — concept only.
 
 ## Annotations (awareness)
 
-Mark deploy times on graphs (vertical lines). Helps correlate latency spikes with releases.
+Mark deploy times on graphs (vertical lines). In production, deployment
+pipelines can write annotations automatically so operators can correlate a
+signal change with a release without guessing.
 
 ---
 
@@ -78,14 +103,14 @@ Mark deploy times on graphs (vertical lines). Helps correlate latency spikes wit
 
 1. Can one dashboard mix Prometheus and Loki panels?
 2. Why review imported dashboard queries?
-3. What golden signal is ERROR log count closest to?
+3. Why group errors by application version?
 
 <details>
 <summary>Answers</summary>
 
 1. Yes — each panel picks its datasource.
 2. They may reference metrics you do not expose or wrong job names.
-3. Errors.
+3. To see whether failures started or increased with a particular release.
 
 </details>
 

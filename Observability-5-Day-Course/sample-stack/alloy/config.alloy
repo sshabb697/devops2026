@@ -16,6 +16,28 @@ local.file_match "demo" {
 
 loki.source.file "demo" {
   targets    = local.file_match.demo.targets
+  forward_to = [loki.process.demo.receiver]
+}
+
+// Parse the application JSON. Keep high-cardinality fields such as duration_ms
+// in the log body; promote only small, bounded values to Loki labels.
+loki.process "demo" {
+  stage.json {
+    expressions = {
+      level   = "level",
+      service = "service",
+      version = "version",
+    }
+  }
+
+  stage.labels {
+    values = {
+      level   = "",
+      service = "",
+      version = "",
+    }
+  }
+
   forward_to = [loki.write.default.receiver]
 }
 
