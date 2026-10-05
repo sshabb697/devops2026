@@ -1,0 +1,13 @@
+version: 0.0
+os: linux
+
+# CodeDeploy instructions: where files go and which scripts run.
+files:
+  - source: index.html
+    destination: /var/www/html/
+
+hooks:
+  AfterInstall:
+    - location: scripts/restart_server.sh
+      timeout: 60
+      runas: root

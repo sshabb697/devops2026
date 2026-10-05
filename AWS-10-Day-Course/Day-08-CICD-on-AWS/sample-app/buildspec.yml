@@ -1,0 +1,26 @@
+version: 0.2
+
+# CodeBuild instructions for the AWS 10-Day Course demo app.
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - echo "Install phase - nothing to install for this static demo"
+  pre_build:
+    commands:
+      - echo "Running a quick test"
+      - test -f index.html && echo "index.html present"
+  build:
+    commands:
+      - echo "Build started on `date`"
+      - echo "Packaging the site"
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+
+artifacts:
+  files:
+    - index.html
+    - appspec.yml
+    - scripts/**/*

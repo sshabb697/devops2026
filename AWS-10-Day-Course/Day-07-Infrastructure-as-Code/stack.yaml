@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  AWS 10-Day Course - Day 7 demo stack.
+  Creates an S3 bucket and a security group in the default VPC.
+
+Parameters:
+  BucketName:
+    Type: String
+    Description: Globally unique S3 bucket name (add your initials + date).
+  ProjectTag:
+    Type: String
+    Default: aws-class
+
+Resources:
+  DemoBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+      VersioningConfiguration:
+        Status: Enabled
+      Tags:
+        - Key: Project
+          Value: !Ref ProjectTag
+
+  WebSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow HTTP from anywhere (class demo)
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Project
+          Value: !Ref ProjectTag
+
+Outputs:
+  BucketArn:
+    Description: ARN of the created bucket
+    Value: !GetAtt DemoBucket.Arn
+  SecurityGroupId:
+    Description: ID of the created security group
+    Value: !Ref WebSecurityGroup
