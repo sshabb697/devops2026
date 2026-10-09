@@ -29,7 +29,7 @@ End **every** class with 5 minutes of cleanup. Day 10 has the master checklist.
 | 1 | Account sign-up delays; have the shared account ready. |
 | 2 | Don't let students use the **root** user for labs — make an admin IAM user first. |
 | 3 | SSH key permissions on Windows (`icacls`) / `chmod 400` on Linux/mac. |
-| 4 | VPC wizard vs manual — use the wizard first time, explain pieces after. |
+| 4 | VPC wizard vs manual — use the wizard first time. **Extension:** Lab 04C needs non-overlapping CIDRs (`10.1` vs `10.2`). Lab 04D needs **two AZs** for ALB — `class-vpc` wizard already has 2 public subnets. Delete ALB before target group. |
 | 5 | Bucket names are **globally unique** — add initials + date. |
 | 6 | RDS takes ~10 min to create. Start it early, teach CLI while it builds. |
 | 7 | CloudFormation YAML indentation errors. Validate before deploy. |

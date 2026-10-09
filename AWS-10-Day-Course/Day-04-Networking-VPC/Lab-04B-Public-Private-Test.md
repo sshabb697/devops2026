@@ -72,4 +72,6 @@ EC2 → terminate public-ec2 and private-ec2
 - [ ] `private-ec2` reachable only from inside the VPC, but has outbound via NAT
 - [ ] **Deleted the NAT Gateway** and terminated both instances
 
+➡️ Extension (same week): [04 — VPC peering](./04-VPC-Peering.md) · [05 — Load balancing](./05-Elastic-Load-Balancing.md)
+
 ➡️ Next day: [Day 5 — Storage (S3 + EBS)](../Day-05-Storage-S3-EBS/)

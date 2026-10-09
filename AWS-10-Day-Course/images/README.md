@@ -26,3 +26,14 @@ Source: [KodeKloud AWS Networking Fundamentals](https://kodekloud.com/courses/aw
 | `day-04-vpc/vpc-resource-map.jpg` | Lesson 03 |
 | `day-04-vpc/ec2-create-key-pair.jpg` | Lab 04 |
 | `day-04-vpc/ec2-launch-network-settings.jpg` | Lab 04 |
+| `day-04-vpc/vpc-peering-two-vpcs.svg` | Lesson 04 |
+| `day-04-vpc/vpc-peering-non-transitive.svg` | Lesson 04 |
+| `day-04-vpc/elb-overview-diagram.jpg` | Lesson 05, Lab 04D |
+| `day-04-vpc/elb-vpc-architecture.jpg` | Lesson 05 |
+| `day-04-vpc/alb-http-https-diagram.jpg` | Lesson 05 |
+| `day-04-vpc/nlb-features.jpg` | Lesson 05 |
+| `day-04-vpc/alb-nlb-comparison.jpg` | Lesson 05 |
+| `day-04-vpc/alb-create-console.jpg` | Lab 04D |
+| `day-04-vpc/alb-target-group.jpg` | Lab 04D |
+| `day-04-vpc/alb-listeners.jpg` | Lab 04D |
+| `day-04-vpc/alb-security-group.jpg` | Lab 04D |

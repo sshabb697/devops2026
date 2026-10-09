@@ -24,6 +24,7 @@ Go **region by region** (check the Region selector, top-right of the console).
    - [ ] Delete **ECR** repositories (and their images).
 7. **Networking (do this LAST)**
    - [ ] Delete **NAT Gateways** (biggest hidden cost!).
+   - [ ] Delete **VPC peering connections** (Day 4 extension).
    - [ ] Release **Elastic IPs**.
    - [ ] Delete custom **VPCs** (removes subnets, route tables, IGWs).
 8. **IaC**

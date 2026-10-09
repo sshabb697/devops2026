@@ -32,7 +32,7 @@ By Day 10 you can:
 | [Day 1](./Day-01-Cloud-and-AWS-Fundamentals/) | Cloud + AWS fundamentals | Account ready; console, regions, billing understood |
 | [Day 2](./Day-02-IAM/) | IAM | Users, groups, roles, least-privilege policies |
 | [Day 3](./Day-03-EC2-Compute/) | EC2 compute | Web app live on an EC2 server |
-| [Day 4](./Day-04-Networking-VPC/) | Networking (VPC) | Public + private subnets with routing |
+| [Day 4](./Day-04-Networking-VPC/) | Networking (VPC) | VPC, NAT, peering, Application Load Balancer |
 | [Day 5](./Day-05-Storage-S3-EBS/) | Storage (S3 + EBS) | Bucket, versioning, static website |
 | [Day 6](./Day-06-Databases-and-CLI/) | Databases + AWS CLI | RDS database + scripting with the CLI |
 | [Day 7](./Day-07-Infrastructure-as-Code/) | IaC (CloudFormation) | One template builds a full stack |

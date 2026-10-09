@@ -22,8 +22,11 @@ Each subnet is associated with one route table. A route says "to reach X, send i
 | `10.0.0.0/16` | `local` | Traffic inside the VPC stays local |
 | `0.0.0.0/0` | `igw-xxxx` | Everything else → the internet (public subnet) |
 | `0.0.0.0/0` | `nat-xxxx` | Everything else → NAT, then internet (private subnet) |
+| `10.2.0.0/16` | `pcx-xxxx` | Remote VPC CIDR → **VPC peering** (Lab 04C) |
 
 The **only** thing that makes a subnet "public" is a route to an **Internet Gateway**. That's it.
+
+Peering routes are covered in [04 — VPC peering](./04-VPC-Peering.md).
 
 In the **default VPC**, the **main route table** already includes `0.0.0.0/0` → Internet Gateway, and default subnets auto-assign public IPv4 addresses — that is why Lab 04 works without creating `class-vpc` first. Your **custom** VPC from Lab 04A uses the same ideas with different CIDRs (`10.0.0.0/16`) and explicit public vs private subnets.
 

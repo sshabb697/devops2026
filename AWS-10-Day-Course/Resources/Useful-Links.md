@@ -28,3 +28,5 @@
 - [AWS Workshops](https://workshops.aws/)
 - [KodeKloud AWS labs](https://kodekloud.com/)
 - [KodeKloud notes — Default VPC demo](https://notes.kodekloud.com/docs/aws-networking-fundamentals/default-vpc-demo) (Day 4 lesson 03)
+- [KodeKloud — VPC peering](https://notes.kodekloud.com/docs/AWS-Networking-Fundamentals/Transit-Networks/VPC-Peering/page) · [Peering demo](https://notes.kodekloud.com/docs/AWS-Networking-Fundamentals/Transit-Networks/VPC-Peering-Demo/page)
+- [AWS VPC peering](https://docs.aws.amazon.com/vpc/latest/peering/) · [ALB guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/)
