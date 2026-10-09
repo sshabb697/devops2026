@@ -14,7 +14,7 @@
 
 **Day 4 deliverable:** you can explain the default VPC (`172.31.0.0/16`), then demonstrate a **custom** VPC where a public instance has internet and a private instance reaches out only via NAT.
 
-> Console walkthrough images in lesson **03** align with [KodeKloud AWS Networking — Default VPC](https://notes.kodekloud.com/docs/aws-networking-fundamentals/default-vpc-demo).
+> **Images:** Lessons and labs use local screenshots and diagrams in [`../images/day-04-vpc/`](../images/day-04-vpc/) (sourced from [KodeKloud AWS Networking Fundamentals](https://kodekloud.com/courses/aws-networking-fundamentals)). See [images README](../images/README.md).
 
 > **Money reminder:** a **NAT Gateway** costs ~$0.045/hour even idle. **Delete it at the end of the day.**
 

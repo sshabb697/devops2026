@@ -9,6 +9,9 @@ The wizard creates subnets, route tables, and gateways for you. We'll inspect ea
 
 1. **VPC → Create VPC**.
 2. Choose **VPC and more** (the wizard).
+
+![VPC and more wizard in the AWS console](../images/day-04-vpc/vpc-wizard-create.jpg)
+
 3. Settings:
    - **Name tag:** `class-vpc`
    - **IPv4 CIDR:** `10.0.0.0/16`
@@ -31,6 +34,10 @@ Open each and note what you see:
    - Private RT has a route `0.0.0.0/0 → nat-...` (NAT Gateway).
 3. **Internet gateways** — one attached to `class-vpc`.
 4. **NAT gateways** — one in a public subnet (this is the one that **costs money**).
+
+![Route table with routes to internet gateway and local VPC](../images/day-04-vpc/route-table-igw-nat.jpg)
+
+![NAT gateway in pending state after creation](../images/day-04-vpc/nat-gateway-pending-console.jpg)
 
 ```text
 class-vpc 10.0.0.0/16

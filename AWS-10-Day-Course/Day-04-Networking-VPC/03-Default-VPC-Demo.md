@@ -6,7 +6,7 @@
 - See how **one subnet per AZ** maps to CIDR blocks in `us-east-1`
 - Explain why an EC2 instance in a default subnet gets a **public IP** and internet access without extra setup
 
-> Console screenshots in this lesson are from [KodeKloud — AWS Networking Fundamentals (Default VPC)](https://notes.kodekloud.com/docs/aws-networking-fundamentals/default-vpc-demo).
+> Console screenshots in this lesson are stored under [`../images/day-04-vpc/`](../images/day-04-vpc/) (from [KodeKloud AWS Networking Fundamentals](https://kodekloud.com/courses/aws-networking-fundamentals)).
 
 ---
 
@@ -22,7 +22,7 @@ Before you build `class-vpc` in Lab 04A, AWS already created a **default VPC** i
 2. Open **VPC** (search “VPC” or pick it from recently visited services).
 3. In the sidebar, click **VPCs** and find the row where **Default VPC** is **Yes**.
 
-![AWS VPC dashboard in the management console](https://kodekloud.com/kk-media/image/upload/v1752863203/notes-assets/images/AWS-Networking-Fundamentals-Default-VPC-Demo/aws-vpc-dashboard-management-console.jpg)
+![AWS VPC dashboard in the management console](../images/day-04-vpc/vpc-dashboard.jpg)
 
 You should see:
 
@@ -32,7 +32,7 @@ You should see:
 | **IPv4 CIDR** | `172.31.0.0/16` |
 | **Default VPC** | Yes |
 
-![Default VPC details in the VPC console](https://kodekloud.com/kk-media/image/upload/v1752863204/notes-assets/images/AWS-Networking-Fundamentals-Default-VPC-Demo/aws-vpc-management-console-details.jpg)
+![Default VPC details in the VPC console](../images/day-04-vpc/default-vpc-details.jpg)
 
 > **Tip:** Every AWS region gets **one** default VPC. The CIDR is usually the same (`172.31.0.0/16`), but it is a **separate** VPC per region — not one VPC stretched globally.
 
@@ -60,7 +60,7 @@ In the default VPC, AWS creates **one subnet per Availability Zone** in that reg
 | us-east-1e | `172.31.64.0/20` |
 | us-east-1f | `172.31.80.0/20` |
 
-![Subnets list for a VPC](https://kodekloud.com/kk-media/image/upload/v1752863205/notes-assets/images/AWS-Networking-Fundamentals-Default-VPC-Demo/aws-management-console-vpc-subnets-list.jpg)
+![Subnets list for a VPC](../images/day-04-vpc/default-vpc-subnets-list.jpg)
 
 Each `/20` is a slice of the parent `/16` VPC range — same idea as the `10.0.1.0/24` subnets you will create in Lab 04A, different numbers.
 
@@ -70,7 +70,7 @@ Each `/20` is a slice of the parent `/16` VPC range — same idea as the `10.0.1
 
 Open the VPC **Resource map** to see how subnets, route tables, and the internet gateway connect.
 
-![VPC resource map showing subnets, route tables, and gateways](https://kodekloud.com/kk-media/image/upload/v1752863207/notes-assets/images/AWS-Networking-Fundamentals-Default-VPC-Demo/aws-vpc-management-console-resource-map.jpg)
+![VPC resource map showing subnets, route tables, and gateways](../images/day-04-vpc/vpc-resource-map.jpg)
 
 Use this view when a subnet “should” have internet but does not — trace the path visually before editing route tables.
 

@@ -15,7 +15,7 @@
 4. **Instance type:** `t2.micro` or `t3.micro`.
 5. **Key pair:** Create new, name `aws-demo` (or reuse `class-key` from Day 3). Download the `.pem` file.
 
-![Create key pair dialog in EC2](https://kodekloud.com/kk-media/image/upload/v1752863208/notes-assets/images/AWS-Networking-Fundamentals-Default-VPC-Demo/aws-ec2-create-key-pair-dialog.jpg)
+![Create key pair dialog in EC2](../images/day-04-vpc/ec2-create-key-pair.jpg)
 
 6. **Network settings** → **Edit**:
    - **VPC:** default VPC (`172.31.0.0/16`)
@@ -24,7 +24,7 @@
 7. **Security group:** allow **SSH (22)** from **My IP**.
 8. **Launch instance**.
 
-![EC2 launch summary with network and security settings](https://kodekloud.com/kk-media/image/upload/v1752863209/notes-assets/images/AWS-Networking-Fundamentals-Default-VPC-Demo/aws-ec2-instance-launch-configuration.jpg)
+![EC2 launch summary with network and security settings](../images/day-04-vpc/ec2-launch-network-settings.jpg)
 
 Wait until **Instance state** is **Running**. Copy the **Public IPv4 address**.
 

@@ -3,6 +3,8 @@
 **Time:** 15 minutes
 Uses `class-vpc` from Lab 04A. We'll prove the public subnet reaches the internet and the private one is hidden.
 
+![Typical layout: public web tier, private database tier](../images/day-04-vpc/public-private-subnets-diagram.jpg)
+
 ---
 
 ## Part A — A public instance (6 min)
@@ -27,6 +29,8 @@ Uses `class-vpc` from Lab 04A. We'll prove the public subnet reaches the interne
    - **Auto-assign public IP: Disable**
    - Security group: allow **SSH (22) from 10.0.0.0/16** (inside the VPC only)
 3. Launch. It has **no public IP** → the internet cannot reach it directly.
+
+![Outbound-only path: private subnet via NAT gateway](../images/day-04-vpc/nat-gateway-diagram.jpg)
 
 ---
 

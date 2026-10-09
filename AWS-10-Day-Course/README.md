@@ -87,6 +87,7 @@ AWS-10-Day-Course/
 ├── README.md
 ├── Command-Cheat-Sheet.md
 ├── Tutor-Notes.md
+├── images/           ← diagrams & console screenshots (Day 4 VPC today)
 ├── Resources/        ← extra links, optional homework, teardown
 └── Day-01- … Day-10- …
 ```

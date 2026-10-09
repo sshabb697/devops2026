@@ -11,6 +11,8 @@
 
 A **VPC** is your own private, fenced-off network inside AWS where your servers live.
 
+![VPC overview: subnetting, routing, and firewalls](../images/day-04-vpc/vpc-overview-diagram.jpg)
+
 ---
 
 ## AWS default VPC (you already have one)
@@ -18,6 +20,8 @@ A **VPC** is your own private, fenced-off network inside AWS where your servers 
 In every region, AWS creates a **default VPC** (usually `172.31.0.0/16`) with subnets in each Availability Zone, an **Internet Gateway**, and routes so instances can get a **public IP**. Many first EC2 launches use this network without extra setup.
 
 You will inspect it in the console in [03 — Default VPC demo](./03-Default-VPC-Demo.md). Later today you build a **custom** VPC (`10.0.0.0/16`) where **you** decide public vs private layout.
+
+![Default VPC vs custom VPC in a region](../images/day-04-vpc/vpc-default-vs-custom.jpg)
 
 ---
 
@@ -54,6 +58,8 @@ VPC:            10.0.0.0/16     → 65,536 addresses (10.0.0.0 – 10.0.255.255)
 | Who goes here | Web servers, load balancers | Databases, app servers |
 | Outbound internet | Direct | Via **NAT Gateway** only |
 
+![Web tier in a public subnet, database in a private subnet](../images/day-04-vpc/public-private-subnets-diagram.jpg)
+
 ---
 
 ## The gateways
@@ -65,6 +71,8 @@ VPC:            10.0.0.0/16     → 65,536 addresses (10.0.0.0 – 10.0.255.255)
 Public subnet  ─▶ Internet Gateway ─▶ Internet  (two-way)
 Private subnet ─▶ NAT Gateway ─▶ IGW ─▶ Internet (outbound only)
 ```
+
+![Default VPC with internet gateway and public subnets](../images/day-04-vpc/default-vpc-igw-diagram.jpg)
 
 ---
 

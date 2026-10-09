@@ -27,6 +27,18 @@ The **only** thing that makes a subnet "public" is a route to an **Internet Gate
 
 In the **default VPC**, the **main route table** already includes `0.0.0.0/0` → Internet Gateway, and default subnets auto-assign public IPv4 addresses — that is why Lab 04 works without creating `class-vpc` first. Your **custom** VPC from Lab 04A uses the same ideas with different CIDRs (`10.0.0.0/16`) and explicit public vs private subnets.
 
+![Local routes in a VPC route table](../images/day-04-vpc/route-table-local-routes.jpg)
+
+![Route table in the VPC console (destinations and targets)](../images/day-04-vpc/route-table-console.jpg)
+
+![Subnet associations on a route table](../images/day-04-vpc/route-table-subnet-associations.jpg)
+
+![Internet gateway attached to a VPC (concept diagram)](../images/day-04-vpc/internet-gateway-diagram.jpg)
+
+![NAT gateway in a public subnet (concept diagram)](../images/day-04-vpc/nat-gateway-diagram.jpg)
+
+![VPC routing concepts summary](../images/day-04-vpc/routing-concepts-summary.jpg)
+
 ---
 
 ## Security group vs network ACL
@@ -55,6 +67,8 @@ Both are firewalls, but at different layers:
 ```
 
 Traffic must pass the **NACL** (subnet) *and* the **security group** (instance) to reach the app.
+
+![Security groups vs NACLs in a VPC](../images/day-04-vpc/sg-vs-nacl-diagram.jpg)
 
 ---
 
