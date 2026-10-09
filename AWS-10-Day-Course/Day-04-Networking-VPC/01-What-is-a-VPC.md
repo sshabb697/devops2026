@@ -13,6 +13,14 @@ A **VPC** is your own private, fenced-off network inside AWS where your servers 
 
 ---
 
+## AWS default VPC (you already have one)
+
+In every region, AWS creates a **default VPC** (usually `172.31.0.0/16`) with subnets in each Availability Zone, an **Internet Gateway**, and routes so instances can get a **public IP**. Many first EC2 launches use this network without extra setup.
+
+You will inspect it in the console in [03 — Default VPC demo](./03-Default-VPC-Demo.md). Later today you build a **custom** VPC (`10.0.0.0/16`) where **you** decide public vs private layout.
+
+---
+
 ## Analogy: a gated housing estate
 
 - **VPC** = the whole gated estate, with one big address range.
@@ -73,4 +81,4 @@ Private subnet ─▶ NAT Gateway ─▶ IGW ─▶ Internet (outbound only)
 
 </details>
 
-➡️ Next: [Lab 04A](./Lab-04A-Build-a-VPC.md)
+➡️ Next: [03 — Default VPC demo](./03-Default-VPC-Demo.md)

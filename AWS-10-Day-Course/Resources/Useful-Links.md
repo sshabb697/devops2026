@@ -27,3 +27,4 @@
 ## Practice playgrounds
 - [AWS Workshops](https://workshops.aws/)
 - [KodeKloud AWS labs](https://kodekloud.com/)
+- [KodeKloud notes — Default VPC demo](https://notes.kodekloud.com/docs/aws-networking-fundamentals/default-vpc-demo) (Day 4 lesson 03)

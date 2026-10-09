@@ -49,6 +49,7 @@ ssh -i class-key.pem ec2-user@PUBLIC_IP
 
 ```bash
 aws ec2 describe-vpcs
+aws ec2 describe-vpcs --filters Name=isDefault,Values=true
 aws ec2 describe-subnets --filters "Name=vpc-id,Values=vpc-0abc123"
 aws ec2 describe-route-tables
 aws ec2 describe-security-groups

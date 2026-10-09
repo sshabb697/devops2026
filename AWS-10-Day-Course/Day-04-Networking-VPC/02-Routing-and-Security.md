@@ -25,6 +25,8 @@ Each subnet is associated with one route table. A route says "to reach X, send i
 
 The **only** thing that makes a subnet "public" is a route to an **Internet Gateway**. That's it.
 
+In the **default VPC**, the **main route table** already includes `0.0.0.0/0` → Internet Gateway, and default subnets auto-assign public IPv4 addresses — that is why Lab 04 works without creating `class-vpc` first. Your **custom** VPC from Lab 04A uses the same ideas with different CIDRs (`10.0.0.0/16`) and explicit public vs private subnets.
+
 ---
 
 ## Security group vs network ACL
