@@ -1,7 +1,8 @@
 # Lab 08B — A CodePipeline end to end
 
-**Time:** 15 minutes
-Builds a Source → Build → Deploy pipeline from the repo you made in Lab 08A.
+**Time:** 15 minutes  
+Builds a Source → Build → Deploy pipeline from the repo you made in Lab 08A.  
+Concept + screenshots: [04 — CodePipeline demo](./04-CodePipeline-Demo.md) · [`../images/day-08-cicd/`](../images/day-08-cicd/).
 
 > Deploy target options: **S3** (simplest, no server) or **EC2 via CodeDeploy**. We'll use **S3** to keep it cheap and fast; EC2 steps are noted at the end.
 
@@ -10,10 +11,19 @@ Builds a Source → Build → Deploy pipeline from the repo you made in Lab 08A.
 ## Part A — Create the pipeline (8 min)
 
 1. **CodePipeline → Create pipeline** → *Build custom pipeline*.
+
+![Create pipeline](../images/day-08-cicd/codepipeline-create.jpg)
+
 2. Name: `class-pipeline`. Let it create a new service role.
 3. **Source:** GitHub (version 2) → connect → repo `aws-class-cicd`, branch `main`.
+
+![Source stage (Git example from KodeKloud)](../images/day-08-cicd/codepipeline-source-codecommit.jpg)
+
 4. **Build:** CodeBuild → choose your `class-build` project (from Lab 08A).
-5. **Deploy:** **Amazon S3** → pick/create a bucket `aws-class-deploy-amy-051026` → tick **Extract file before deploy**.
+5. **Deploy:** **Amazon S3** → pick/create a bucket `aws-class-deploy-<your-initials>-<date>` → tick **Extract file before deploy**.
+
+![Deploy stage](../images/day-08-cicd/codepipeline-deploy-stage.jpg)
+
 6. Create the pipeline. It runs automatically.
 
 ---
@@ -21,6 +31,9 @@ Builds a Source → Build → Deploy pipeline from the repo you made in Lab 08A.
 ## Part B — Watch it flow (4 min)
 
 - The pipeline shows three stages going green: **Source → Build → Deploy**.
+
+![Pipeline stages succeeded (reference)](../images/day-08-cicd/codepipeline-build-deploy-success.jpg)
+
 - Enable static website hosting on the deploy bucket (Day 5) and open the URL — you see the demo page.
 
 ```text
@@ -37,9 +50,23 @@ git push ─▶ Source ✅ ─▶ Build ✅ ─▶ Deploy to S3 ✅ ─▶ live
 
 ---
 
+## Optional — add a Test stage
+
+Same idea as KodeKloud Demo 3: **Edit** pipeline → **Add stage** between Build and Deploy → CodeBuild action → **Release change**.
+
+![Add Test / CodeBuild action](../images/day-08-cicd/codepipeline-add-test-stage.jpg)
+
+![Four-stage success (reference)](../images/day-08-cicd/codepipeline-4stage-success.jpg)
+
+---
+
 ## EC2 deploy (optional, if time)
 
-To deploy to EC2 instead of S3: install the **CodeDeploy agent** on an EC2 instance, create a **CodeDeploy application + deployment group**, and point the Deploy stage at it. It uses the `appspec.yml` and `scripts/restart_server.sh` from `sample-app/`.
+To deploy to EC2 instead of S3: install the **CodeDeploy agent** on an EC2 instance, create a **CodeDeploy application + deployment group** (tag filter), and point the Deploy stage at it. It uses the `appspec.yml` and `scripts/restart_server.sh` from `sample-app/`.
+
+![CodeDeploy application](../images/day-08-cicd/codedeploy-create-app.jpg)
+
+![Deployment group + EC2 tags](../images/day-08-cicd/codedeploy-tag-filter.jpg)
 
 ---
 

@@ -1,7 +1,8 @@
 # Lab 08A — Build with CodeBuild
 
-**Time:** 15 minutes
-Uses the files in [`sample-app/`](./sample-app/) (`buildspec.yml`, `index.html`).
+**Time:** 15 minutes  
+Uses the files in [`sample-app/`](./sample-app/) (`buildspec.yml`, `index.html`).  
+Walkthrough screenshots: [03 — CodeBuild demo](./03-CodeBuild-Demo.md) · [`../images/day-08-cicd/`](../images/day-08-cicd/).
 
 ---
 
@@ -23,10 +24,22 @@ Uses the files in [`sample-app/`](./sample-app/) (`buildspec.yml`, `index.html`)
 ## Part B — Create a CodeBuild project (7 min)
 
 1. **CodeBuild → Create build project**.
+
+![Create build project](../images/day-08-cicd/codebuild-create-project.jpg)
+
 2. Name: `class-build`.
 3. **Source:** GitHub → connect your account → pick `aws-class-cicd`, branch `main`.
+
+![Source provider](../images/day-08-cicd/codebuild-source-provider.jpg)
+
 4. **Environment:** Managed image, Amazon Linux, Standard runtime. Let CodeBuild **create a new service role**.
+
+![Runtime configuration](../images/day-08-cicd/codebuild-runtime-config.jpg)
+
 5. **Buildspec:** "Use a buildspec file" (it reads `buildspec.yml` from the repo).
+
+![Buildspec setting](../images/day-08-cicd/codebuild-buildspec-config.jpg)
+
 6. Create, then **Start build**.
 
 ---
@@ -37,6 +50,8 @@ Uses the files in [`sample-app/`](./sample-app/) (`buildspec.yml`, `index.html`)
 - You'll see your phases run: `install → pre_build → build → post_build`.
 - The `pre_build` step prints **"index.html present"** — that's your test passing.
 - Status goes **Succeeded** (green).
+
+![Succeeded build](../images/day-08-cicd/codebuild-succeeded.jpg)
 
 > **Homework idea:** break the build — rename `index.html` in the repo, push, and watch `pre_build` fail. Then fix it.
 
